@@ -102,7 +102,7 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  @import '~app/themes/quasar.variables'
+  @import '~variables'
 
   .drawer-menu-item
     position relative

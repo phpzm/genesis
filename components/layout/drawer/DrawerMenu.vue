@@ -8,7 +8,7 @@
 
 <script type="text/javascript">
   import { mapGetters } from 'vuex'
-  import AppDrawerMenuItem from 'src/themes/genesis/components/layout/drawer/DrawerMenuItem.vue'
+  import AppDrawerMenuItem from 'genesis/components/layout/drawer/DrawerMenuItem.vue'
 
   export default {
     components: {
