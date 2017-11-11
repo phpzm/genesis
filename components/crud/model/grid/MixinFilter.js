@@ -1,3 +1,4 @@
+import { get } from 'lodash'
 import { clone } from 'genesis/support/utils'
 
 export default {
@@ -69,16 +70,52 @@ export default {
       this.browse(this.path, query)
     },
     /**
+     * @param {object} schema
+     * @returns {boolean}
+     */
+    filterFilters (schema) {
+      const filter = get(schema, 'grid.filter')
+      return typeof filter === 'object'
+    },
+    /**
      * @param {Object} column
      * @returns {Object}
      */
     mapFilters (column) {
-      column.width = 100
-      column.component = this.componentName(column.filter.component)
-      column.value = column.filter.value
-      column.rule = column.filter.rule || this.rule
-      delete column.filter
-      return column
+      const {grid, form} = column
+      const {filter} = grid
+      const base = {
+        component: this.parseFilterComponent(filter, grid, form),
+        value: get(filter, 'value', undefined),
+        rule: get(filter, 'rule', this.rule)
+      }
+      const map = Object.assign({}, form, grid, base)
+      map.width = 100
+      delete map.validate
+      delete map.filter
+      delete map.hidden
+      console.log('~> mapFilters', map)
+      return map
+    },
+    /**
+     * @param filter
+     * @param grid
+     * @param form
+     * @returns {*|string}
+     */
+    parseFilterComponent (filter, grid, form) {
+      let component = get(filter, 'component')
+      if (component) {
+        return this.componentName(component)
+      }
+      component = get(grid, 'component')
+      if (component) {
+        return this.componentName(component)
+      }
+      component = get(form, 'component')
+      if (component) {
+        return this.componentName(component)
+      }
     },
     /**
      * @param {Object} accumulate
@@ -101,22 +138,20 @@ export default {
     /**
      */
     renderFilters () {
-      const columns = clone(this.columns)
-      columns.shift()
+      console.log('~> renderFilters')
+      const schemas = clone(this.schemas)
+      schemas.shift()
+      const columns = schemas.filter(this.filterFilters)
+      const filters = this.filters.filter(this.filterFilters)
 
-      const map = item => {
-        item.grid.component = this.componentName(item.form.component)
-        return item
-      }
+      const filterColumns = columns.map(this.mapFilters)
+      const filterAdditional = filters.map(this.mapFilters)
 
-      const filterColumns = columns.filter(column => column.filter).map(this.mapFilters)
-      const filterAdditional = this.filters.map(map).filter(this.filterColumns).map(this.mapColumns)
+      const all = []
+      all.push(...filterColumns)
+      all.push(...filterAdditional)
 
-      const filters = []
-      filters.push(...filterColumns)
-      filters.push(...filterAdditional)
-
-      this.filter.columns = filters
+      this.filter.columns = all
 
       this.filter.record = this.filter.columns.reduce(this.reduceFiltersRecord, {})
       this.filter.rules = this.filter.columns.reduce(this.reduceFiltersRules, {})
