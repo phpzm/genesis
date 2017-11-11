@@ -45,6 +45,7 @@
   import AppButtonBar from 'phpzm/components/button/AppButtonBar.vue'
   import AppGridFilter from 'phpzm/components/crud/components/grid/AppGridFilter'
   import AppGridToolbar from 'phpzm/components/crud/components/grid/AppGridToolbar.vue'
+  import MixinNavigation from 'phpzm/components/@mixins/MixinNavigation'
   import { MixinComputed, MixinData, MixinMethods, MixinProps } from './model'
   import { MixinGrid, MixinFilter } from './model/grid'
 
@@ -56,7 +57,7 @@
    */
   const AppCrudGrid = {
     mixins: [
-      MixinComputed, MixinData, MixinMethods, MixinProps, MixinGrid, MixinFilter
+      MixinComputed, MixinData, MixinMethods, MixinProps, MixinNavigation, MixinFilter, MixinGrid
     ],
     name: 'app-crud-grid',
     components: {

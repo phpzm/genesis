@@ -23,6 +23,7 @@
 <script type="text/javascript">
   import AppForm from 'phpzm/components/form/AppForm.vue'
   import AppButtonBar from 'phpzm/components/button/AppButtonBar.vue'
+  import MixinNavigation from 'phpzm/components/@mixins/MixinNavigation'
   import { MixinComputed, MixinData, MixinMethods, MixinProps } from './model'
   import { MixinForm } from './model/form'
 
@@ -32,7 +33,7 @@
    */
   const AppCrudForm = {
     mixins: [
-      MixinComputed, MixinData, MixinMethods, MixinProps, MixinForm
+      MixinComputed, MixinData, MixinMethods, MixinProps, MixinNavigation, MixinForm
     ],
     name: 'app-crud-form',
     components: {
