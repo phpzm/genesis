@@ -1,0 +1,11 @@
+{
+  "name": "genesis",
+  "version": "0.0.1",
+  "description": "RAD dashboard tools using Quasar",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "William Correa <wilcorrea@gmail.com>",
+  "license": "MIT"
+}
