@@ -2,7 +2,12 @@
   <field :class="classNames" v-bind="{id, inline, problems, label, validate, title, tooltip, editable, visible}">
     <div slot="component">
       <div v-show="editable" :class="{'has-error': problems.length}">
-        <q-numeric v-model="model" v-bind="bind" @input="updateValue"></q-numeric>
+        <!--<q-numeric v-model="model" v-bind="bind"></q-numeric>-->
+        <div class="q-numeric input" :name="field" :id="id">
+          <i class="material-icons" @click="remove(model, step)">remove</i>
+          <input type="number" v-model="model" pattern="[0-9]*" :step="step" @input="updateValue"/>
+          <i class="material-icons" @click="add(model, step)">add</i>
+        </div>
       </div>
       <div v-show="!editable" class="html" v-html="html"></div>
     </div>
@@ -20,15 +25,15 @@
     },
     name: 'field-numeric',
     props: {
-      options: {
-        type: Array,
-        default: () => ([])
-      },
       min: {
         type: Number
       },
       max: {
         type: Number
+      },
+      step: {
+        type: Number,
+        default: () => 1
       }
     },
     data: () => ({
@@ -56,9 +61,25 @@
         }
         this.updated = false
       },
+      /**
+       */
       updateValue () {
         this.updated = true
         this.$emit('input', this.model)
+      },
+      /**
+       * @param {Number} value
+       * @param {Number} step
+       */
+      add (value, step) {
+        this.applyValue(value + step)
+      },
+      /**
+       * @param {Number} value
+       * @param {Number} step
+       */
+      remove (value, step) {
+        this.applyValue(value - step)
       }
     },
     watch: {
@@ -78,22 +99,27 @@
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .field-numeric
     .q-numeric
+      display flex
+      align-items center
+      flex-direction row
+      width 100%
+      padding 6px
       margin 0
-    .error-message, .label-with-error
-      color darkred
-    .error-message
-      font-size 12px
       i
-        font-size 14px
+        border 1px solid #ddd
+        border-radius 2px
         cursor pointer
-    .has-error input
-      background rgba(249, 125, 125, 0.2)
+        font-size 140%
+      input
+        width calc(100% - 40px)
+        margin 0 5px
+        border none
+        box-shadow none
+        text-align center
+        padding 3px 0 0 0
     .html
       height 38px
       color #515151
       padding 9px 8px
-      font-family Roboto
       font-size 14.4px
-    input:-webkit-autofill
-      -webkit-box-shadow 0 0 0 1000px #ffffff inset, 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important
 </style>
