@@ -111,7 +111,7 @@
     },
     data: () => ({
       sides: {
-        left: false,
+        left: true,
         right: true
       }
     }),
