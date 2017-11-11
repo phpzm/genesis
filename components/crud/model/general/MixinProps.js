@@ -1,5 +1,23 @@
 export default {
   props: {
+    scopes: {
+      type: Object,
+      default: () => ({
+        index: {},
+        create: {
+          method: 'create'
+        },
+        edit: {
+          method: 'update'
+        },
+        view: {
+          readonly: true
+        }
+      })
+    },
+    scope: {
+      type: String
+    },
     service: {
       type: Object,
       required: true,
@@ -18,25 +36,6 @@ export default {
     actions: {
       default: () => null
     },
-    scopes: {
-      type: Object,
-      default: () => ({
-        index: {},
-        create: {
-          method: 'create'
-        },
-        edit: {
-          method: 'update'
-        },
-        view: {
-          readonly: true
-        }
-      })
-    },
-    scope: {
-      type: String,
-      default: () => 'index'
-    },
     component: {
       type: String,
       default: () => 'field'
@@ -45,25 +44,13 @@ export default {
       type: String,
       default: () => 'id'
     },
-    tab: {
-      type: String,
-      default: () => ''
-    },
-    direction: {
-      type: String,
-      default: () => 'right'
-    },
-    position: {
-      type: String,
-      default: () => 'left'
-    },
     timeout: {
       type: Number,
       default: () => 100
     },
-    changer: {
+    direction: {
       type: String,
-      default: () => '~'
+      default: () => 'right'
     },
     debug: {
       type: Boolean,

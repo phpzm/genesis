@@ -8,10 +8,6 @@ export default {
     scope: {
       default: () => 'view'
     },
-    tabs: {
-      type: Array,
-      default: () => ([])
-    },
     messages: {
       type: Object,
       default: () => ({
@@ -44,6 +40,14 @@ export default {
           }
         }
       }
+    },
+    tabs: {
+      type: Array,
+      default: () => ([])
+    },
+    tab: {
+      type: String,
+      default: () => ''
     }
   },
   data: () => ({

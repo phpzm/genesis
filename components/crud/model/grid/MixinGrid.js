@@ -6,6 +6,7 @@ import { wildcard } from 'genesis/support/utils/index'
 export default {
   props: {
     scope: {
+      type: String,
       default: () => 'index'
     },
     messages: {
@@ -28,6 +29,10 @@ export default {
           }
         }
       }
+    },
+    position: {
+      type: String,
+      default: () => 'left'
     },
     slots: {
       type: Array,

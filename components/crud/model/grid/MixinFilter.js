@@ -94,7 +94,6 @@ export default {
       delete map.validate
       delete map.filter
       delete map.hidden
-      console.log('~> mapFilters', map)
       return map
     },
     /**
@@ -138,7 +137,6 @@ export default {
     /**
      */
     renderFilters () {
-      console.log('~> renderFilters')
       const schemas = clone(this.schemas)
       schemas.shift()
       const columns = schemas.filter(this.filterFilters)
