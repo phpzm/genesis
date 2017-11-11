@@ -8,7 +8,7 @@
 
 <script type="text/javascript">
   import { mapGetters } from 'vuex'
-  import AppDrawerMenuItem from 'phpzm/components/layout/drawer/DrawerMenuItem.vue'
+  import AppDrawerMenuItem from 'src/themes/phpzm/components/layout/drawer/DrawerMenuItem.vue'
 
   export default {
     components: {
@@ -50,6 +50,8 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
+  @import '~variables'
+
   .app-drawer-menu
     color $app-drawer-menu-color
 </style>
