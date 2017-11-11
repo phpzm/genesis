@@ -1,5 +1,5 @@
-import item from 'phpzm/modules/dashboard/helper/item'
-import { uniqid } from 'phpzm/support/utils'
+import item from 'genesis/modules/dashboard/helper/item'
+import { uniqid } from 'genesis/support/utils'
 import configureField from 'src/bootstrap/configure/field'
 import configureGrid from 'src/bootstrap/configure/grid'
 import configureForm from 'src/bootstrap/configure/form'

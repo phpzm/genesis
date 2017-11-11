@@ -18,7 +18,7 @@
 </template>
 
 <script type="text/javascript">
-  import AppButtonBar from 'phpzm/components/button/AppButtonBar.vue'
+  import AppButtonBar from 'genesis/components/button/AppButtonBar.vue'
 
   const options = [
     {

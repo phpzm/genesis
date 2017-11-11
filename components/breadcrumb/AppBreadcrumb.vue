@@ -17,7 +17,7 @@
 
 <script type="text/javascript">
   import { Events } from 'quasar-framework'
-  import { PATH_HOME } from 'phpzm/support/index'
+  import { PATH_HOME } from 'genesis/support/index'
 
   export default {
     name: 'app-breadcrumb',

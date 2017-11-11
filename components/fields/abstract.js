@@ -1,5 +1,5 @@
 import { uid } from 'quasar-framework'
-import { unMask } from 'phpzm/support/utils/index'
+import { unMask } from 'genesis/support/utils/index'
 
 export default {
   props: {

@@ -20,9 +20,9 @@
 <script type="text/javascript">
   import moment from 'moment'
   import { VueMaskDirective } from 'v-mask'
-  import Field from 'phpzm/components/fields/components/base.vue'
-  import FieldAbstract from 'phpzm/components/fields/abstract'
-  import { mask, unMask, padRight, padLeft } from 'phpzm/support/utils'
+  import Field from 'genesis/components/fields/components/base.vue'
+  import FieldAbstract from 'genesis/components/fields/abstract'
+  import { mask, unMask, padRight, padLeft } from 'genesis/support/utils'
 
   export default {
     components: {

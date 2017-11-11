@@ -1,3 +1,3 @@
-export { default as MixinFilter } from 'phpzm/components/crud/model/grid/MixinFilter'
+export { default as MixinFilter } from 'genesis/components/crud/model/grid/MixinFilter'
 
-export { default as MixinGrid } from 'phpzm/components/crud/model/grid/MixinGrid'
+export { default as MixinGrid } from 'genesis/components/crud/model/grid/MixinGrid'

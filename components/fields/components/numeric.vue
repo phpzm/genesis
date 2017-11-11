@@ -10,8 +10,8 @@
 </template>
 
 <script type="text/javascript">
-  import Field from 'phpzm/components/fields/components/base.vue'
-  import FieldAbstract from 'phpzm/components/fields/abstract'
+  import Field from 'genesis/components/fields/components/base.vue'
+  import FieldAbstract from 'genesis/components/fields/abstract'
 
   export default {
     extends: FieldAbstract,

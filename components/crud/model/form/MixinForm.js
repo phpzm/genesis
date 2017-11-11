@@ -1,7 +1,7 @@
 import { mapActions } from 'vuex'
 import populateForm from 'src/bootstrap/populate/form'
-import { toast, undo } from 'phpzm/support/message/index'
-import { wildcard } from 'phpzm/support/utils/index'
+import { toast, undo } from 'genesis/support/message/index'
+import { wildcard } from 'genesis/support/utils/index'
 
 export default {
   props: {

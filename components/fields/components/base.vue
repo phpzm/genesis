@@ -23,7 +23,7 @@
 </template>
 
 <script type="text/javascript">
-  import { alert } from 'phpzm/support/message'
+  import { alert } from 'genesis/support/message'
 
   export default {
     name: 'field-base',

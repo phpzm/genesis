@@ -1,8 +1,8 @@
 import axios from 'axios'
 import canceler from 'axios-cancel'
-import configure from 'phpzm/infra/services/http/configure'
-import { URL_API } from 'phpzm/support/index'
-import { loading } from 'phpzm/support/message/index'
+import configure from 'genesis/infra/services/http/configure'
+import { URL_API } from 'genesis/support/index'
+import { loading } from 'genesis/support/message/index'
 import configureToken from 'src/bootstrap/configure/token'
 
 const http = axios.create({

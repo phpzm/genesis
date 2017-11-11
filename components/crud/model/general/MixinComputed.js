@@ -1,4 +1,4 @@
-import { APP_DEV } from 'phpzm/support/index'
+import { APP_DEV } from 'genesis/support/index'
 
 export default {
   computed: {

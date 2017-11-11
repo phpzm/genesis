@@ -20,7 +20,7 @@
 </template>
 
 <script type="text/javascript">
-  import MixinPermission from 'phpzm/components/@mixins/MixinPermission'
+  import MixinPermission from 'genesis/components/@mixins/MixinPermission'
   import { computed, data, methods, props } from './model'
 
   export default {

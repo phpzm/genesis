@@ -1,4 +1,4 @@
-import { clone } from 'phpzm/support/utils'
+import { clone } from 'genesis/support/utils'
 
 export default {
   props: {

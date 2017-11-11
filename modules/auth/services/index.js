@@ -1,6 +1,6 @@
-import store from 'phpzm/infra/store'
+import store from 'genesis/infra/store'
 import configureUser from 'src/bootstrap/configure/user'
-import { promise } from 'phpzm/support/utils'
+import { promise } from 'genesis/support/utils'
 
 /**
  * @param {string} token

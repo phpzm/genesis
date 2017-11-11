@@ -1,7 +1,7 @@
 /**
  * Vuex mutations
  */
-import * as types from 'phpzm/infra/store/types'
+import * as types from 'genesis/infra/store/types'
 
 export default {
   /**

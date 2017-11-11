@@ -1,11 +1,11 @@
 import { Events } from 'quasar-framework'
-import store from 'phpzm/infra/store'
-import { abort } from 'phpzm/infra/services/http'
-import { PATH_NO_ACCESS, PATH_LOGIN } from 'phpzm/support'
-import { confirm } from 'phpzm/support/message'
-import i18n from 'phpzm/support/i18n'
+import store from 'genesis/infra/store'
+import { abort } from 'genesis/infra/services/http'
+import { PATH_NO_ACCESS, PATH_LOGIN } from 'genesis/support'
+import { confirm } from 'genesis/support/message'
+import i18n from 'genesis/support/i18n'
 import permission from 'src/bootstrap/configure/permission'
-import { unRegister } from 'phpzm/modules/auth/services/index'
+import { unRegister } from 'genesis/modules/auth/services/index'
 
 /**
  * @param {Array} routes

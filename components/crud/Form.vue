@@ -21,9 +21,9 @@
 </template>
 
 <script type="text/javascript">
-  import AppForm from 'phpzm/components/form/AppForm.vue'
-  import AppButtonBar from 'phpzm/components/button/AppButtonBar.vue'
-  import MixinNavigation from 'phpzm/components/@mixins/MixinNavigation'
+  import AppForm from 'genesis/components/form/AppForm.vue'
+  import AppButtonBar from 'genesis/components/button/AppButtonBar.vue'
+  import MixinNavigation from 'genesis/components/@mixins/MixinNavigation'
   import { MixinComputed, MixinData, MixinMethods, MixinProps } from './model'
   import { MixinForm } from './model/form'
 

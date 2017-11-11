@@ -21,8 +21,8 @@
 <script type="text/javascript">
   import moment from 'moment'
   import { VueMaskDirective } from 'v-mask'
-  import Field from 'phpzm/components/fields/components/base.vue'
-  import FieldAbstract from 'phpzm/components/fields/abstract'
+  import Field from 'genesis/components/fields/components/base.vue'
+  import FieldAbstract from 'genesis/components/fields/abstract'
   import { dayNames, monthNames } from 'src/bootstrap/i18n'
 
   export default {

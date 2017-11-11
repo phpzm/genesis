@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { money, mask } from 'phpzm/support/utils'
+import { money, mask } from 'genesis/support/utils'
 
 /**
  * @param value

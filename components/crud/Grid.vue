@@ -41,11 +41,11 @@
 </template>
 
 <script type="text/javascript">
-  import AppDataTable from 'phpzm/components/data-table/AppDataTable.vue'
-  import AppButtonBar from 'phpzm/components/button/AppButtonBar.vue'
-  import AppGridFilter from 'phpzm/components/crud/components/grid/AppGridFilter'
-  import AppGridToolbar from 'phpzm/components/crud/components/grid/AppGridToolbar.vue'
-  import MixinNavigation from 'phpzm/components/@mixins/MixinNavigation'
+  import AppDataTable from 'genesis/components/data-table/AppDataTable.vue'
+  import AppButtonBar from 'genesis/components/button/AppButtonBar.vue'
+  import AppGridFilter from 'genesis/components/crud/components/grid/AppGridFilter'
+  import AppGridToolbar from 'genesis/components/crud/components/grid/AppGridToolbar.vue'
+  import MixinNavigation from 'genesis/components/@mixins/MixinNavigation'
   import { MixinComputed, MixinData, MixinMethods, MixinProps } from './model'
   import { MixinGrid, MixinFilter } from './model/grid'
 

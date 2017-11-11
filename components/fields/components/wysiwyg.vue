@@ -11,10 +11,10 @@
 <script type="text/javascript">
   import { uid } from 'quasar-framework'
   import { mapGetters } from 'vuex'
-  import { URL_IMAGE_MANAGER, URL_IMAGE_UPLOAD } from 'phpzm/support/index'
+  import { URL_IMAGE_MANAGER, URL_IMAGE_UPLOAD } from 'genesis/support/index'
   import 'vue-froala-wysiwyg'
-  import Field from 'phpzm/components/fields/components/base.vue'
-  import FieldAbstract from 'phpzm/components/fields/abstract'
+  import Field from 'genesis/components/fields/components/base.vue'
+  import FieldAbstract from 'genesis/components/fields/abstract'
 
   export default {
     components: {

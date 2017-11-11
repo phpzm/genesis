@@ -1,5 +1,5 @@
 import { actions } from '../../model'
-import { setDotNotation } from 'phpzm/support/transform'
+import { setDotNotation } from 'genesis/support/transform'
 
 export default {
   methods: {

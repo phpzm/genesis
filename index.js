@@ -7,4 +7,4 @@ require('./themes/fonts/index.styl')
  * @type {string}
  * @private
  */
-export const __CRUD__ = 'vendor/phpzm/components/crud'
+export const __CRUD__ = 'vendor/genesis/components/crud'

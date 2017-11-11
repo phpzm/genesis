@@ -1,6 +1,6 @@
-import http from 'phpzm/infra/services/http/index'
-import { loading } from 'phpzm/support/message/index'
-import { PATH_LOGIN } from 'phpzm/support/index'
+import http from 'genesis/infra/services/http/index'
+import { loading } from 'genesis/support/message/index'
+import { PATH_LOGIN } from 'genesis/support/index'
 import { httpRequest, httpResponse, httpError } from 'src/bootstrap/configure/http'
 
 /**

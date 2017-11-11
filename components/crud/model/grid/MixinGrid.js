@@ -1,7 +1,7 @@
 import configureSearch from 'src/bootstrap/configure/search'
 import populateGrid from 'src/bootstrap/populate/grid'
-import { undo } from 'phpzm/support/message/index'
-import { wildcard } from 'phpzm/support/utils/index'
+import { undo } from 'genesis/support/message/index'
+import { wildcard } from 'genesis/support/utils/index'
 
 export default {
   props: {

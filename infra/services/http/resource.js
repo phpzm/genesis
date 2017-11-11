@@ -1,4 +1,4 @@
-import http from 'phpzm/infra/services/http/index'
+import http from 'genesis/infra/services/http/index'
 import { $body } from 'src/bootstrap/configure/http'
 
 /**

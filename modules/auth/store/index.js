@@ -1,6 +1,6 @@
-import { APP_USER, APP_TOKEN, APP_REMEMBER } from 'phpzm/support/index'
-import { set, get } from 'phpzm/infra/storage'
-import { setToken } from 'phpzm/infra/services/http/index'
+import { APP_USER, APP_TOKEN, APP_REMEMBER } from 'genesis/support/index'
+import { set, get } from 'genesis/infra/storage'
+import { setToken } from 'genesis/infra/services/http/index'
 
 export const CHANGE_USER = 'setAuthUser'
 

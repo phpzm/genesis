@@ -1,4 +1,4 @@
-export { default as store } from 'phpzm/modules/dashboard/store'
+export { default as store } from 'genesis/modules/dashboard/store'
 
 /**
  * @param {string} label

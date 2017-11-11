@@ -1,1 +1,1 @@
-export { default as MixinForm } from 'phpzm/components/crud/model/form/MixinForm'
+export { default as MixinForm } from 'genesis/components/crud/model/form/MixinForm'

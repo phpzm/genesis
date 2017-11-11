@@ -15,10 +15,10 @@
 </template>
 
 <script type="text/javascript">
-  import Field from 'phpzm/components/fields/components/base.vue'
+  import Field from 'genesis/components/fields/components/base.vue'
   import { VMoney } from 'v-money'
-  import FieldAbstract from 'phpzm/components/fields/abstract'
-  import { money } from 'phpzm/support/utils'
+  import FieldAbstract from 'genesis/components/fields/abstract'
+  import { money } from 'genesis/support/utils'
 
   export default {
     extends: FieldAbstract,

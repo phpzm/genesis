@@ -1,4 +1,4 @@
-import { uniqid } from 'phpzm/support/utils'
+import { uniqid } from 'genesis/support/utils'
 
 export default {
   methods: {

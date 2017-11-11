@@ -1,7 +1,7 @@
 /**
  * Vuex state
  */
-import { APP_NAME } from 'phpzm/support/index'
+import { APP_NAME } from 'genesis/support/index'
 
 const label = APP_NAME
 

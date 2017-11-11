@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { strict, APP_USER, APP_TOKEN } from 'phpzm/support/index'
-import { get } from 'phpzm/infra/storage'
+import { strict, APP_USER, APP_TOKEN } from 'genesis/support/index'
+import { get } from 'genesis/infra/storage'
 
-import state from 'phpzm/infra/store/schema/state'
-import mutations from 'phpzm/infra/store/schema/mutations'
+import state from 'genesis/infra/store/schema/state'
+import mutations from 'genesis/infra/store/schema/mutations'
 
-import * as actions from 'phpzm/infra/store/schema/actions'
-import * as getters from 'phpzm/infra/store/schema/getters'
+import * as actions from 'genesis/infra/store/schema/actions'
+import * as getters from 'genesis/infra/store/schema/getters'
 
-import modules from 'phpzm/infra/store/schema/modules'
+import modules from 'genesis/infra/store/schema/modules'
 
 Vue.use(Vuex)
 

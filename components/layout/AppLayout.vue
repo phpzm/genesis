@@ -59,10 +59,10 @@
 
 <script type="text/javascript">
   import { mapGetters } from 'vuex'
-  import { set, get } from 'phpzm/infra/storage'
-  import AppBreadcrumb from 'phpzm/components/breadcrumb/AppBreadcrumb.vue'
-  import AppDrawerMenu from 'phpzm/components/layout/drawer/DrawerMenu.vue'
-  import AppTransitionSlide from 'phpzm/components/transition/AppTransitionSlide.vue'
+  import { set, get } from 'genesis/infra/storage'
+  import AppBreadcrumb from 'genesis/components/breadcrumb/AppBreadcrumb.vue'
+  import AppDrawerMenu from 'genesis/components/layout/drawer/DrawerMenu.vue'
+  import AppTransitionSlide from 'genesis/components/transition/AppTransitionSlide.vue'
 
   export default {
     components: {

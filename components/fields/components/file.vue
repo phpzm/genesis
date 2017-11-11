@@ -10,9 +10,9 @@
 </template>
 
 <script type="text/javascript">
-  import Field from 'phpzm/components/fields/components/base.vue'
-  import FieldAbstract from 'phpzm/components/fields/abstract'
-  import { URL_FILE_UPLOAD } from 'phpzm/support/index'
+  import Field from 'genesis/components/fields/components/base.vue'
+  import FieldAbstract from 'genesis/components/fields/abstract'
+  import { URL_FILE_UPLOAD } from 'genesis/support/index'
   import { uid } from 'quasar-framework'
 
   export default {

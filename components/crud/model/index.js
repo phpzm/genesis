@@ -1,7 +1,7 @@
-export { default as MixinComputed } from 'phpzm/components/crud/model/general/MixinComputed'
-export { default as MixinData } from 'phpzm/components/crud/model/general/MixinData'
-export { default as MixinMethods } from 'phpzm/components/crud/model/general/MixinMethods'
-export { default as MixinProps } from 'phpzm/components/crud/model/general/MixinProps'
+export { default as MixinComputed } from 'genesis/components/crud/model/general/MixinComputed'
+export { default as MixinData } from 'genesis/components/crud/model/general/MixinData'
+export { default as MixinMethods } from 'genesis/components/crud/model/general/MixinMethods'
+export { default as MixinProps } from 'genesis/components/crud/model/general/MixinProps'
 
 import configureButtons from 'src/bootstrap/configure/buttons'
 
