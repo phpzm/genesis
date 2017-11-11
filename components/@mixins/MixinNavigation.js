@@ -1,6 +1,12 @@
 import { uniqid } from 'genesis/support/utils'
 
 export default {
+  props: {
+    changer: {
+      type: String,
+      default: () => '~'
+    }
+  },
   methods: {
     /**
      * @param {string} path

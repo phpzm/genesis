@@ -2,7 +2,7 @@
   <field :class="classNames" v-bind="{id, inline, problems, label, validate, title, tooltip, editable, visible}">
     <div slot="component">
       <div v-show="editable" class="q-radio-container" :class="{'has-error': problems.length}">
-        <q-radio v-model="model" v-for="options in options"
+        <q-radio v-model="model" v-for="options in options" :disable="disabled"
                  :key="options.value" :val="options.value" :label="options.label" @input="updateValue(model)"/>
       </div>
       <div v-show="!editable" class="html" v-html="html"></div>

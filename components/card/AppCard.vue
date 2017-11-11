@@ -4,7 +4,7 @@
     <q-card>
       <q-card-title v-if="header" class="q-card--title">
         <slot name="title">
-          <q-icon :name="icon"/> <span v-if="label" v-html="label"/><span v-if="title" v-html="title"/>
+          <q-icon :name="icon"/> <span v-if="label" v-html="label"/>
         </slot>
       </q-card-title>
       <q-card-separator v-if="separator"/>
@@ -21,9 +21,6 @@
     name: 'app-card',
     props: {
       label: {
-        default: ''
-      },
-      title: {
         default: ''
       },
       icon: {

@@ -1,15 +1,20 @@
 <template>
   <div class="app-link">
     <router-link :to="to">{{ value }}</router-link>
-    <app-tooltip>{{ tooltip }}</app-tooltip>
+    <app-tooltip :disable="!tooltip">{{ tooltip }}</app-tooltip>
   </div>
 </template>
 
 <script type="text/javascript">
+  import { get } from 'lodash'
+
   const AppLink = {
     name: 'app-link',
     props: {
       path: {
+        default: () => ''
+      },
+      label: {
         default: () => ''
       },
       value: {
@@ -28,7 +33,7 @@
         }
       },
       tooltip () {
-        return this.record ? this.record.name : ''
+        return get(this.record, this.label, '')
       }
     }
   }
