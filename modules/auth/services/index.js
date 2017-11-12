@@ -1,5 +1,5 @@
+import { Auth } from 'genesis'
 import store from 'genesis/infra/store'
-import configureUser from 'src/bootstrap/configure/user'
 import { promise } from 'genesis/support/utils'
 
 /**
@@ -18,7 +18,8 @@ export const registerToken = (token, remember, success = () => ({})) => {
  * @returns {Promise}
  */
 export const registerUser = (user, success = () => ({})) => {
-  return store.dispatch('setAuthUser', configureUser(user)).then(success)
+  const configure = Auth.get('user')
+  return store.dispatch('setAuthUser', configure(user)).then(success)
 }
 
 /**

@@ -44,6 +44,18 @@ export default {
       type: String,
       default: () => 'id'
     },
+    bottom: {
+      type: Boolean,
+      default: () => true
+    },
+    top: {
+      type: Boolean,
+      default: () => true
+    },
+    floating: {
+      type: Boolean,
+      default: () => true
+    },
     timeout: {
       type: Number,
       default: () => 100

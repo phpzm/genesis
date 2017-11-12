@@ -1,8 +1,6 @@
+import { Model } from 'genesis'
 import item from 'genesis/modules/dashboard/helper/item'
 import { uniqid } from 'genesis/support/utils'
-import configureField from 'src/bootstrap/configure/field'
-import configureGrid from 'src/bootstrap/configure/grid'
-import configureForm from 'src/bootstrap/configure/form'
 
 /**
  * @type {Function}
@@ -13,7 +11,14 @@ import configureForm from 'src/bootstrap/configure/form'
  * @param scopes
  * @returns {object}
  */
-export const field = configureField
+export const field = (field, label, component = 'text', scopes = []) => {
+  /**
+   * @type {Function}
+   * @private
+   */
+  const _field = Model.get('field')
+  return _field(field, label, component, scopes)
+}
 
 /**
  * @type {Function}
@@ -27,7 +32,14 @@ export const field = configureField
  * @param {Object} options
  * @returns {Object}
  */
-export const grid = configureGrid
+export const grid = (service, path, id, schemas, filters, actions = null, options = {}) => {
+  /**
+   * @type {Function}
+   * @private
+   */
+  const _grid = Model.get('grid')
+  return _grid(service, path, id, schemas, filters, actions, options)
+}
 
 /**
  * @type {Function}
@@ -41,7 +53,10 @@ export const grid = configureGrid
  * @param {Object} options
  * @returns {Object}
  */
-export const form = configureForm
+export const form = (service, scope, path, id, schemas, actions = null, options = {}) => {
+  const _form = Model.get('form')
+  return _form(service, scope, path, id, schemas, actions, options)
+}
 
 /**
  * @type {Function}

@@ -37,7 +37,7 @@ export default {
     /**
      */
     filterClose () {
-      window.setTimeout(this.$refs.filter.close, this.timeout)
+      window.setTimeout(this.$refs.filter.close, 100)
     },
     /**
      */

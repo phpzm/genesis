@@ -23,7 +23,7 @@ export default (service, path, id, schemas, filters, actions = null, options = {
         }
       }
     ],
-    timeout: 200,
+    timeout: 150,
     top: false,
     bottom: true,
     styles: {

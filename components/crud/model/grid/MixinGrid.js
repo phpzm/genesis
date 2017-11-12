@@ -50,18 +50,6 @@ export default {
       type: String,
       default: () => 'vw'
     },
-    bottom: {
-      type: Boolean,
-      default: () => true
-    },
-    top: {
-      type: Boolean,
-      default: () => true
-    },
-    floating: {
-      type: Boolean,
-      default: () => true
-    },
     filtering: {
       type: Boolean,
       default: () => true

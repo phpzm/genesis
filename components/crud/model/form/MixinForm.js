@@ -93,7 +93,7 @@ export default {
      * @param {string} id
      */
     fetchData (id) {
-      this.read(id)
+      window.setTimeout(() => this.read(id), this.timeout)
     },
     ...mapActions(['setAppModified'])
   },

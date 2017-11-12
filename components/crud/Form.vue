@@ -1,17 +1,23 @@
 <template>
   <div class="app-crud-grid">
 
-    <app-button-bar :buttons="buttons.top" :handler="handler" :direction="direction" :record="data"/>
+    <slot v-if="top" name="top">
+      <app-button-bar :buttons="buttons.top" :handler="handler" :direction="direction" :record="data"/>
+    </slot>
 
-    <hr>
+    <hr v-if="top">
     <app-form ref="form" v-bind="{tabs, tab, fields, data, debug}" @form~input="input" @form~valid="valid"></app-form>
-    <hr>
+    <hr v-if="bottom">
 
-    <app-button-bar :buttons="buttons.top" :handler="handler" :direction="direction" :record="data"/>
+    <slot v-if="bottom" name="bottom">
+      <app-button-bar :buttons="buttons.top" :handler="handler" :direction="direction" :record="data"/>
+    </slot>
 
-    <div class="fixed-bottom-right">
-      <app-button-bar :buttons="buttons.floating" :handler="handler" :record="data"/>
-    </div>
+    <slot v-if="floating" name="floating">
+      <div class="fixed-bottom-right">
+        <app-button-bar :buttons="buttons.floating" :handler="handler" :record="data"/>
+      </div>
+    </slot>
 
     <template v-if="debugging">
       <app-debugger v-bind="{label: 'data', inspect: data}"></app-debugger>
