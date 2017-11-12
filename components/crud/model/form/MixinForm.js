@@ -1,5 +1,5 @@
+import { Data } from 'genesis'
 import { mapActions } from 'vuex'
-import populateForm from 'src/bootstrap/populate/form'
 import { toast, undo } from 'genesis/support/message/index'
 import { wildcard } from 'genesis/support/utils/index'
 
@@ -26,6 +26,7 @@ export default {
             this.setAppModified(false)
           },
           read: (response) => {
+            const populateForm = Data.get('form')
             populateForm(this, response)
           },
           update: (response) => {

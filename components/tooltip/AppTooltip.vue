@@ -5,7 +5,7 @@
 </template>
 
 <script type="text/javascript">
-  import tooltip from 'src/bootstrap/configure/tooltip'
+  import { View } from 'genesis'
 
   const AppTooltip = {
     extends: {},
@@ -26,6 +26,7 @@
       }
     },
     created () {
+      const tooltip = View.get('tooltip')
       // test if environment has tooltips
       this.disabled = !tooltip(this)
       // if has, test if tooltip was disabled via props

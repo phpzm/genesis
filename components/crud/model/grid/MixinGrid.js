@@ -1,5 +1,4 @@
-import configureSearch from 'src/bootstrap/configure/search'
-import populateGrid from 'src/bootstrap/populate/grid'
+import { Data } from 'genesis'
 import { undo } from 'genesis/support/message/index'
 import { wildcard } from 'genesis/support/utils/index'
 
@@ -20,7 +19,10 @@ export default {
       type: Object,
       default () {
         return {
-          read: (response) => populateGrid(this, response),
+          read: (response) => {
+            const populateGrid = Data.get('grid')
+            populateGrid(this, response)
+          },
           delete: (response) => {
             undo(wildcard(this.messages.delete, this.$http.$body(response)), () => {
               // window.alert('Undo')
@@ -138,8 +140,13 @@ export default {
         return accumulate
       }, {})
 
+      /**
+       * @type {Function}
+       */
+      const configure = Data.get('search')
+
       const search = () => {
-        this.search(configureSearch(this.page, this.limit, filters))
+        this.search(configure(this.page, this.limit, filters))
       }
 
       window.setTimeout(search, this.timeout)

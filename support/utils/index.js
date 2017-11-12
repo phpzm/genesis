@@ -205,7 +205,7 @@ export const storage = (values = {}) => {
      * @returns this
      */
     set (property, value) {
-      console.log('|~> set', property)
+      // console.log('|~> set', property)
       set(this.values, property, value)
       return this
     },
@@ -214,7 +214,7 @@ export const storage = (values = {}) => {
      * @returns this
      */
     get (property) {
-      console.log('|~> get', property)
+      // console.log('|~> get', property)
       return get(this.values, property)
     },
     /**

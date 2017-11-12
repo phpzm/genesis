@@ -20,10 +20,10 @@
 
 <script type="text/javascript">
   import moment from 'moment'
+  import { View } from 'genesis'
   import { VueMaskDirective } from 'v-mask'
   import Field from 'genesis/components/fields/components/base.vue'
   import FieldAbstract from 'genesis/components/fields/abstract'
-  import { dayNames, monthNames } from 'src/bootstrap/i18n'
 
   export default {
     extends: FieldAbstract,
@@ -57,11 +57,11 @@
       },
       monthNames: {
         type: Array,
-        default: () => monthNames
+        default: () => View.get('locales.date.month')
       },
       dayNames: {
         type: Array,
-        default: () => dayNames
+        default: () => View.get('locales.date.days.week')
       }
     },
     data: () => ({

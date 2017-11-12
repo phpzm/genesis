@@ -4,9 +4,15 @@ import { Routes } from 'genesis'
 
 Vue.use(Router)
 
-export const load = Routes.get('load')
-
+/**
+ * @type {VueRouter}
+ */
 const AppRouter = new Router({routes: []})
+
+/**
+ * @type {Function}
+ */
+export const load = Routes.get('load')
 
 /**
  * @type {Array}
@@ -14,7 +20,7 @@ const AppRouter = new Router({routes: []})
 export const routes = Routes.get('routes')
 
 /**
- * @param news
+ * @param {Array} news
  */
 export const add = (news) => {
   routes.push(...news)
@@ -35,6 +41,7 @@ export const configure = (routes) => {
 }
 
 AppRouter.addRoutes(configure(routes))
+
 AppRouter.beforeEach(Routes.get('beforeEach'))
 AppRouter.afterEach(Routes.get('afterEach'))
 
