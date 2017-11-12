@@ -7,6 +7,7 @@ export { default as Auth } from 'genesis/settings/auth'
 export { default as Crud } from 'genesis/settings/crud'
 export { default as Routes } from 'genesis/settings/routes'
 export { default as Model } from 'genesis/settings/model'
+export { default as Navigation } from 'genesis/settings/navigation'
 
 export { default as Actions } from 'genesis/settings/actions'
 export { default as Populate } from 'genesis/settings/populate'

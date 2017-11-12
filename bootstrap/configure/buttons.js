@@ -58,8 +58,7 @@ export const buttons = ($this) => {
     button('add', 2, '', add($this), 'add', 'Inicie a criação de um novo registro', 'primary')
       .$all(['floating'], {round: true}),
 
-    button('back', 1, '', () => $this.$router.go(-1), 'reply', 'Voltar para a tela anterior')
-      .$options({rotate: false}).$all(['top', 'bottom']),
+    button('back', 1, 'Voltar', () => $this.$router.go(-1), '', 'Voltar para a tela anterior').$all(['top', 'bottom']),
 
     // ********************************* last buttons *********************************
 

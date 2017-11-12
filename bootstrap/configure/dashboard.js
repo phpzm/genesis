@@ -1,15 +1,14 @@
-import store from 'genesis/infra/store/index'
-import menu from 'src/bootstrap/menus/drawer'
-import options from 'src/bootstrap/menus/options'
-import configurePath from 'src/bootstrap/configure/path'
+import store from 'genesis/infra/store'
+import { Navigation } from 'genesis'
 
 /**
  * @param {Vue} $component
  */
 export default ($component) => {
-  // noinspection JSIgnoredPromiseFromCall
-  store.dispatch('setAppMenu', menu(configurePath))
+  const menu = Navigation.get('drawer')
+  const options = Navigation.get('options')
+  const path = Navigation.get('path')
 
-  // noinspection JSIgnoredPromiseFromCall
-  store.dispatch('setDashboardOptions', options())
+  store.dispatch('setAppMenu', menu(path))
+  store.dispatch('setDashboardOptions', options(path))
 }
