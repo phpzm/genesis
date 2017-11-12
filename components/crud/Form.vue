@@ -22,6 +22,7 @@
     <template v-if="debugging">
       <app-debugger v-bind="{label: 'data', inspect: data}"></app-debugger>
       <app-debugger v-bind="{label: 'fields', inspect: fields}"></app-debugger>
+      <app-debugger v-bind="{label: 'errors', inspect: errors}"></app-debugger>
     </template>
   </div>
 </template>

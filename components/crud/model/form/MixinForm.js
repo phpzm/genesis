@@ -54,6 +54,7 @@ export default {
   data: () => ({
     fields: {},
     data: {},
+    errors: {},
     status: false
   }),
   methods: {
@@ -81,9 +82,11 @@ export default {
     },
     /**
      * @param {boolean} valid
+     * @param {Object} errors
      */
-    valid (valid) {
+    valid (valid, errors) {
       this.status = valid
+      this.errors = errors
     },
     /**
      * @param {AxiosError} error
