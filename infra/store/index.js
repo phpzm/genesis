@@ -1,9 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { strict, APP_USER, APP_TOKEN } from 'genesis/support/index'
-import { get } from 'genesis/infra/storage'
-
 import state from 'genesis/infra/store/schema/state'
 import mutations from 'genesis/infra/store/schema/mutations'
 
@@ -14,17 +11,8 @@ import modules from 'genesis/infra/store/schema/modules'
 
 Vue.use(Vuex)
 
-const AppStore = new Vuex.Store({state, mutations, actions, getters, modules, strict})
+const strict = process.env.DEV
 
-const user = get(APP_USER)
-if (user) {
-  // noinspection JSIgnoredPromiseFromCall
-  AppStore.dispatch('setAuthUser', user)
-}
-const token = get(APP_TOKEN)
-if (token) {
-  // noinspection JSIgnoredPromiseFromCall
-  AppStore.dispatch('setAuthToken', token)
-}
+const AppStore = new Vuex.Store({state, mutations, actions, getters, modules, strict})
 
 export default AppStore
