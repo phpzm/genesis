@@ -18,7 +18,15 @@ export default {
       this.schemas[field].errors = this.getErrors(field)
 
       this.$emit('form~input', this.record)
-      this.$emit('form~valid', !this.$v.$invalid)
+
+      const reduce = (accumulate, key) => {
+        if (this.$v.record[key].$invalid) {
+          accumulate[key] = true
+        }
+        return accumulate
+      }
+      const invalids = Object.keys(this.$v.record).reduce(reduce, {})
+      this.$emit('form~valid', !this.$v.$invalid, invalids)
     },
     /**
      * @param {string} event
@@ -135,13 +143,6 @@ export default {
         })
       }
       return errors
-    },
-    /**
-     * @param tab
-     * @returns {boolean}
-     */
-    selected (tab) {
-      return this.tabDefault === tab.name
     }
   }
 }

@@ -180,12 +180,16 @@ export const uniqid = (prefix = '', entropy = false) => {
 
 /**
  * @param {string} string
- * @param {Object} object
+ * @param {Object} data
  * @returns {string}
  */
-export const wildcard = (string, object) => {
-  return Object.keys(object).reduce((accumulate, property) => {
-    return accumulate.replace(new RegExp(`{${property}}`, 'g'), object[property])
+export const wildcard = (string, data) => {
+  if (Array.isArray(data) && data.length) {
+    data = data[0]
+  }
+  return Object.keys(data).reduce((accumulate, property) => {
+    const expression = '\{' + property + '\}'
+    return accumulate.replace(new RegExp(expression, 'g'), data[property])
   }, string)
 }
 
