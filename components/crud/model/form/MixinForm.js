@@ -72,6 +72,9 @@ export default {
 
       this.fields = this.schemas.filter(filter).map(map)
     },
+    /**
+     * @param {Object} data
+     */
     input (data) {
       this.data = data
       this.setAppModified(true)
@@ -96,6 +99,9 @@ export default {
     fetchData (id) {
       window.setTimeout(() => this.read(id), this.timeout)
     },
+    /**
+     * @param {boolean}
+     */
     ...mapActions(['setAppModified'])
   },
   watch: {

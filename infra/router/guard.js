@@ -1,10 +1,9 @@
 import { Events } from 'quasar-framework'
-import { Auth } from 'genesis'
+import { Auth, View } from 'genesis'
 import store from 'genesis/infra/store'
 import { abort } from 'genesis/infra/services/http'
 import { PATH_NO_ACCESS, PATH_LOGIN } from 'genesis/support'
 import { confirm } from 'genesis/support/message'
-import i18n from 'genesis/support/i18n'
 import { unRegister } from 'genesis/modules/auth/services/index'
 
 /**
@@ -55,14 +54,14 @@ export const checkPermission = ($route) => {
 export const checkModified = (next) => {
   const modified = store.getters.AppModified
   if (modified) {
-    window.setTimeout(() => {
-      // noinspection JSCheckFunctionSignatures
-      confirm(i18n.t('events.modified.title'), i18n.t('events.modified.message'), () => {
-        // noinspection JSIgnoredPromiseFromCall
-        store.dispatch('setAppModified', false)
-        next()
-      })
-    }, 100)
+    const moveOn = () => {
+      store.dispatch('setAppModified', false)
+      next()
+    }
+    const ask = () => {
+      confirm(View.get('locales.events.modified.title'), View.get('locales.events.modified.message'), moveOn)
+    }
+    window.setTimeout(ask, 100)
     return true
   }
   return false
