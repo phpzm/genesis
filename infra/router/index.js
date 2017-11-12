@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import { Routes } from 'genesis'
-// import { routes as base, beforeEach, afterEach } from 'src/routes'
 
 Vue.use(Router)
 

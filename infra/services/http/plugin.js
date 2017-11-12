@@ -1,7 +1,7 @@
-import http from 'genesis/infra/services/http/index'
+import { Http } from 'genesis'
 import { loading } from 'genesis/support/message/index'
 import { PATH_LOGIN } from 'genesis/support/index'
-import { httpRequest, httpResponse, httpError } from 'src/bootstrap/configure/http'
+import { default as http, install } from 'genesis/infra/services/http'
 
 /**
  * @param http
@@ -9,6 +9,9 @@ import { httpRequest, httpResponse, httpError } from 'src/bootstrap/configure/ht
  * @param router
  */
 export const interceptors = (http, store, router) => {
+  const httpRequest = Http.get('httpRequest')
+  const httpResponse = Http.get('httpResponse')
+  const httpError = Http.get('httpError')
   /**
    * @param config
    * @returns {*}
@@ -59,6 +62,7 @@ export const interceptors = (http, store, router) => {
  * @returns {AxiosInstance}
  */
 export default (Vue, {store, router}) => {
+  install()
   interceptors(http, store, router)
   Object.defineProperty(Vue.prototype, '$http', {
     get () {

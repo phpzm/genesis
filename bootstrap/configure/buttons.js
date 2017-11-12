@@ -1,5 +1,6 @@
+import { storage } from 'genesis/support/utils'
 import { button } from 'genesis/modules/dashboard/index'
-import { view, edit, add, create, read, update, destroy } from 'src/bootstrap/configure/operations'
+import { view, edit, add, create, read, update, destroy } from './operations'
 
 const color = 'positive'
 
@@ -7,7 +8,7 @@ const color = 'positive'
  * @param {Object} $this
  * @return {Array}
  */
-export default ($this) => {
+export const buttons = ($this) => {
   return [
     // ********************************* middle *********************************
 
@@ -69,3 +70,10 @@ export default ($this) => {
       .$options({rotate: false, 'class': '--button-filter'}).$grid()
   ]
 }
+
+/**
+ * @type {Object}
+ */
+export default storage({
+  buttons: buttons
+})

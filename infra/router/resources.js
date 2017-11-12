@@ -1,4 +1,4 @@
-import configureCrud from 'src/bootstrap/configure/crud'
+import { Crud } from 'genesis'
 
 /**
  * @param {string} path
@@ -45,15 +45,15 @@ export const child = (path, namespace, props, uri, scope, component, meta = {}) 
  * @param {string} components
  * @returns {Array}
  */
-export const crud = (path, namespace, grid, form, meta, id = 'id', components = '') => {
+export const crud = (path, namespace, grid, form, meta, id = 'id') => {
   const resources = factory(path, namespace, grid, form, meta)
-
+  const configure = Crud.get('configure')
   return [
-    route(path, '', configureCrud('Index', components), {title: meta.label}, meta, [
-      child(path, namespace, grid, '', 'index', configureCrud('Grid', components), resources.$read()),
-      child(path, namespace, form, 'create', 'create', configureCrud('Form', components), resources.$create()),
-      child(path, namespace, form, ':' + id, 'view', configureCrud('Form', components), resources.$view()),
-      child(path, namespace, form, ':' + id + '/edit', 'edit', configureCrud('Form', components), resources.$edit())
+    route(path, '', configure('Index'), {title: meta.label}, meta, [
+      child(path, namespace, grid, '', 'index', configure('Grid'), resources.$read()),
+      child(path, namespace, form, 'create', 'create', configure('Form'), resources.$create()),
+      child(path, namespace, form, ':' + id, 'view', configure('Form'), resources.$view()),
+      child(path, namespace, form, ':' + id + '/edit', 'edit', configure('Form'), resources.$edit())
     ])
   ]
 }

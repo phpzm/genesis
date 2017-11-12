@@ -1,10 +1,12 @@
 import { uid } from 'quasar-framework'
-import { $extract } from 'src/bootstrap/configure/http'
+import { Http } from 'genesis'
 
 /**
  * @param {Object} http
  */
 export default http => {
+  const $extract = Http.get('$extract')
+
   const _request = http.request
   http.request = function (config) {
     return _request(Object.assign({}, {requestId: uid()}, config))

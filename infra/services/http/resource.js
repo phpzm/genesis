@@ -1,5 +1,5 @@
 import http from 'genesis/infra/services/http/index'
-import { $body } from 'src/bootstrap/configure/http'
+import { Http } from 'genesis'
 
 /**
  * @param {object} object
@@ -118,6 +118,8 @@ export const source = (api, value, label, more = {}) => {
     return Object.assign({}, base, others)
   }
   const success = (response, callback) => {
+    const $body = Http.get('$body')
+
     const data = $body(response)
     let source = []
     if (Array.isArray(data)) {

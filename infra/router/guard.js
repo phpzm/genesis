@@ -1,10 +1,10 @@
 import { Events } from 'quasar-framework'
+import { Auth } from 'genesis'
 import store from 'genesis/infra/store'
 import { abort } from 'genesis/infra/services/http'
 import { PATH_NO_ACCESS, PATH_LOGIN } from 'genesis/support'
 import { confirm } from 'genesis/support/message'
 import i18n from 'genesis/support/i18n'
-import permission from 'src/bootstrap/configure/permission'
 import { unRegister } from 'genesis/modules/auth/services/index'
 
 /**
@@ -43,6 +43,7 @@ export const checkSession = () => {
  * @return {boolean}
  */
 export const checkPermission = ($route) => {
+  const permission = Auth.get('permission')
   // noinspection JSUnresolvedVariable
   return permission(store.getters.getAuthUser, $route)
 }

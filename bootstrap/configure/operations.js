@@ -1,5 +1,5 @@
-import { confirm } from 'genesis/support/message/index'
-import { $first } from 'src/bootstrap/configure/http'
+import { confirm } from 'genesis/support/message'
+import { $first } from './http'
 
 /**
  * @param {AppCrudGrid|AppCrudForm} $this

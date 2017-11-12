@@ -1,11 +1,15 @@
 import axios from 'axios'
 import canceler from 'axios-cancel'
-import configure from 'genesis/infra/services/http/configure'
-import { URL_API } from 'genesis/support/index'
-import { loading } from 'genesis/support/message/index'
-import configureToken from 'src/bootstrap/configure/token'
+import { set } from 'lodash'
+import { Token } from 'genesis'
+import { URL_API } from 'genesis/support'
+import { loading } from 'genesis/support/message'
+import configure from './configure'
 
-const http = axios.create({
+/**
+ * @type {Axios}
+ */
+export const http = axios.create({
   baseURL: URL_API,
   headers: {
     'Accept': 'application/json',
@@ -13,17 +17,25 @@ const http = axios.create({
   }
 })
 
-configure(http)
+/**
+ * @returns {Axios}
+ */
+export const install = () => {
+  configure(http)
 
-canceler(http, {
-  debug: false // process.env.DEV
-})
+  canceler(http, {
+    debug: false // process.env.DEV
+  })
+
+  return http
+}
 
 /**
  * @param {string} token
  */
 export const setToken = token => {
-  http.defaults.headers.common.Authorization = configureToken(token)
+  const configureToken = Token.get('configure')
+  set(http, 'defaults.headers.common.Authorization', configureToken(token))
 }
 
 /**

@@ -1,6 +1,6 @@
 import { get } from 'lodash'
 import { mapGetters } from 'vuex'
-import permission from 'src/bootstrap/configure/permission'
+import { Auth } from 'genesis'
 
 export default {
   computed: {
@@ -21,6 +21,9 @@ export default {
       if (typeof action.permission === 'function') {
         return action.permission(record, this, this.getAuthUser)
       }
+
+      const permission = Auth.get('permission')
+
       // test the permission using the criteria defined in configure
       const access = permission(this.getAuthUser, $route, action)
       if (!access) {
