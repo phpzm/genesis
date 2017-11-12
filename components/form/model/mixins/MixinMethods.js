@@ -14,7 +14,6 @@ export default {
       if (this.$v.record[field]) {
         this.$v.record[field].$touch()
       }
-      this.fireEvent(field, 'change')
       this.schemas[field].errors = this.getErrors(field)
 
       this.$emit('form~input', this.record)
