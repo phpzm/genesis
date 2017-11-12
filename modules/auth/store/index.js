@@ -9,44 +9,45 @@ export const CHANGE_TOKEN = 'setAuthToken'
 export const CHANGE_REMEMBER = 'setAuthRemember'
 
 const state = {
+  remember: get(APP_REMEMBER),
   user: undefined,
-  token: undefined,
-  remember: get(APP_REMEMBER)
+  token: undefined
 }
 
 const getters = {
+  getAuthRemember: (state) => state.remember,
   getAuthUser: (state) => state.user,
-  getAuthToken: (state) => state.token,
-  getAuthRemember: (state) => state.token
+  getAuthToken: (state) => state.token
 }
 
 const actions = {
-  setAuthUser: (context, user) => {
-    context.commit(CHANGE_USER, user)
-    set(APP_USER, user, state.remember)
+  setAuthRemember: (store, remember) => {
+    store.commit(CHANGE_REMEMBER, remember)
+    set(APP_REMEMBER, remember, true)
   },
-  setAuthToken: (context, token) => {
-    context.commit(CHANGE_TOKEN, token)
-    set(APP_TOKEN, token, state.remember)
+  setAuthUser: (store, user) => {
+    store.commit(CHANGE_USER, user)
+    console.log('~> setAuthUser', store.getters.getAuthRemember)
+    set(APP_USER, user, store.getters.getAuthRemember)
+  },
+  setAuthToken: (store, token) => {
+    store.commit(CHANGE_TOKEN, token)
+    set(APP_TOKEN, token, store.getters.getAuthRemember)
     if (token) {
       setToken(token)
     }
-  },
-  setAuthRemember: (context, remember) => {
-    context.commit(CHANGE_REMEMBER, state.remember)
-    set(APP_REMEMBER, remember, true)
   }
 }
 
 const mutations = {
+  [CHANGE_REMEMBER] (state, remember) {
+    state.remember = remember
+  },
   [CHANGE_USER] (state, user) {
     state.user = user
   },
   [CHANGE_TOKEN] (state, token) {
     state.token = token
-  },
-  [CHANGE_REMEMBER] (state, remember) {
-    state.remember = remember
   }
 }
 
