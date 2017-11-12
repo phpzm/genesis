@@ -1,3 +1,5 @@
+import { get, set } from 'lodash'
+
 /**
  * @param {Array} array
  * @param {String} property
@@ -185,4 +187,43 @@ export const wildcard = (string, object) => {
   return Object.keys(object).reduce((accumulate, property) => {
     return accumulate.replace(new RegExp(`{${property}}`, 'g'), object[property])
   }, string)
+}
+
+/**
+ * @param {Object} values
+ * @returns {Object}
+ */
+export const storage = (values = {}) => {
+  return {
+    /**
+     * @type {Object}
+     */
+    values: Object.assign({}, values),
+    /**
+     * @param {string} property
+     * @param {Object} values
+     * @returns this
+     */
+    set (property, value) {
+      console.log('~> set', property)
+      set(this.values, property, value)
+      return this
+    },
+    /**
+     * @param {string} property
+     * @returns this
+     */
+    get (property) {
+      console.log('~> get', property)
+      return get(this.values, property)
+    },
+    /**
+     * @param {Object} values
+     * @returns this
+     */
+    attach (values) {
+      this.values = values
+      return this
+    }
+  }
 }

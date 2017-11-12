@@ -1,23 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
-import { routes as base, beforeEach, afterEach } from 'src/routes'
+import { Routes } from 'genesis'
+// import { routes as base, beforeEach, afterEach } from 'src/routes'
 
 Vue.use(Router)
 
-function load (component) {
-  if (!component) {
-    return
-  }
-  return () => System.import(`src/${component}.vue`)
-}
+export const load = Routes.get('load')
 
 const AppRouter = new Router({routes: []})
 
 /**
  * @type {Array}
  */
-export const routes = base
+export const routes = Routes.get('routes')
 
 /**
  * @param news
@@ -41,7 +36,7 @@ export const configure = (routes) => {
 }
 
 AppRouter.addRoutes(configure(routes))
-AppRouter.beforeEach(beforeEach)
-AppRouter.afterEach(afterEach)
+AppRouter.beforeEach(Routes.get('beforeEach'))
+AppRouter.afterEach(Routes.get('afterEach'))
 
 export default AppRouter

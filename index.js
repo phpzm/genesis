@@ -1,7 +1,5 @@
 require('./themes/fonts/index.styl')
 
-import './components'
-
 export { default as Routes } from 'genesis/configure/routes'
 export { default as Actions } from 'genesis/configure/actions'
 export { default as Populate } from 'genesis/configure/populate'
