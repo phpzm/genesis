@@ -45,10 +45,11 @@ export default {
     },
     /**
      * @param {Object} parameters
+     * @param {Object} config
      */
-    search (parameters = {}) {
+    search (parameters = {}, config = {}) {
       this.service
-        .get('', parameters)
+        .get('', parameters, config)
         .then(response => this.then(response, 'read'))
         .catch(error => this.catch(error, 'search', [parameters]))
     },

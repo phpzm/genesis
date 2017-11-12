@@ -6,7 +6,7 @@ import { Http } from 'genesis'
  * @param {string} prefix
  * @returns {string}
  */
-export const serialize = (object, prefix) => {
+export const serialize = (object, prefix = '') => {
   const string = []
   for (let property in object) {
     if (!object.hasOwnProperty(property)) {
@@ -45,9 +45,10 @@ export const create = (path) => {
    * @param {object} data
    * @param {string} uri
    * @param {object} parameters
+   * @param {object} config
    */
-  return (data, uri, parameters) => {
-    return http.post(url(path, uri, parameters), data)
+  return (data, uri, parameters, config) => {
+    return http.post(url(path, uri, parameters), data, config)
   }
 }
 
@@ -59,9 +60,10 @@ export const read = (path) => {
   /**
    * @param {string} uri
    * @param {object} parameters
+   * @param {object} config
    */
-  return (uri, parameters) => {
-    return http.get(url(path, uri, parameters))
+  return (uri, parameters, config) => {
+    return http.get(url(path, uri, parameters), config)
   }
 }
 
@@ -74,9 +76,10 @@ export const update = (path) => {
    * @param {string} id
    * @param {object} data
    * @param {object} parameters
+   * @param {object} config
    */
-  return (id, data, parameters) => {
-    return http.put(url(path, id, parameters), data)
+  return (id, data, parameters, config) => {
+    return http.put(url(path, id, parameters), data, config)
   }
 }
 
@@ -90,8 +93,8 @@ export const destroy = (path) => {
    * @param {string} id
    * @param {object} parameters
    */
-  return (id, parameters) => {
-    return http.delete(url(path, id, parameters))
+  return (id, parameters, config) => {
+    return http.delete(url(path, id, parameters), config)
   }
 }
 

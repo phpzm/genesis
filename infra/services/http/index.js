@@ -4,6 +4,7 @@ import { set } from 'lodash'
 import { Auth } from 'genesis'
 import { URL_API } from 'genesis/support'
 import { loading } from 'genesis/support/message'
+
 import configure from './configure'
 
 /**
@@ -26,7 +27,6 @@ export const install = () => {
   canceler(http, {
     debug: false // process.env.DEV
   })
-
   return http
 }
 

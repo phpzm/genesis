@@ -129,8 +129,9 @@ export default {
       this.changePage(1)
     },
     /**
+     * @param {boolean} noCache
      */
-    fetchData () {
+    fetchData (noCache = false) {
       const filters = Object.keys(this.filter.record).reduce((accumulate, key) => {
         let value = this.filter.record[key]
         if (this.filter.rules[key]) {
@@ -146,7 +147,7 @@ export default {
       const configure = Data.get('search')
 
       const search = () => {
-        this.search(configure(this.page, this.limit, filters))
+        this.search(configure(this.page, this.limit, filters), {noCache})
       }
 
       window.setTimeout(search, this.timeout)
