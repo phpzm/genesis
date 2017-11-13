@@ -69,6 +69,10 @@ export default {
         height: 'calc(100vh - 330px)',
         minHeight: '170px'
       })
+    },
+    limiting: {
+      type: Number,
+      default: () => (25)
     }
   },
   data: () => ({
@@ -166,6 +170,7 @@ export default {
       this.page = parseInt(this.$route.query.page)
       this.pages = parseInt(this.$route.query.page)
     }
+    this.limit = this.limiting
     if (this.$route.query.limit) {
       this.limit = parseInt(this.$route.query.limit)
     }
