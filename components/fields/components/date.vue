@@ -129,14 +129,14 @@
     .component
       position relative
       & > input
-        max-height 34px
+        height 37px
       & > .material-icons
         position absolute !important
         cursor pointer
         right 0
         top 0
         color #ffffff
-        padding 7px 10px
+        padding 9px 10px 8px 10px
         font-size 20px
         z-index 10
         border-radius 2px
