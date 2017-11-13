@@ -6,7 +6,8 @@
     </slot>
 
     <hr v-if="top">
-    <app-form ref="form" v-bind="{tabs, tab, fields, data, debug}" @form~input="input" @form~valid="valid"></app-form>
+    <app-form ref="form" v-bind="{tabs, tab, fields, data, readonly, change, debug}"
+              @form~input="input" @form~valid="valid"/>
     <hr v-if="bottom">
 
     <slot v-if="bottom" name="bottom">
@@ -20,9 +21,9 @@
     </slot>
 
     <template v-if="debugging">
-      <app-debugger v-bind="{label: 'data', inspect: data}"></app-debugger>
-      <app-debugger v-bind="{label: 'fields', inspect: fields}"></app-debugger>
-      <app-debugger v-bind="{label: 'errors', inspect: errors}"></app-debugger>
+      <app-debugger v-bind="{label: 'data', inspect: data}"/>
+      <app-debugger v-bind="{label: 'fields', inspect: fields}"/>
+      <app-debugger v-bind="{label: 'errors', inspect: errors}"/>
     </template>
   </div>
 </template>

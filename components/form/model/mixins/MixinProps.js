@@ -15,6 +15,13 @@ export default {
     data: {
       type: Object,
       default: () => ({})
+    },
+    readonly: {
+      type: Boolean,
+      default: () => (false)
+    },
+    change: {
+      type: Function
     }
   }
 }

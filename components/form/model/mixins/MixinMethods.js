@@ -14,10 +14,15 @@ export default {
       if (this.$v.record[field]) {
         this.$v.record[field].$touch()
       }
+      // pass errors to fields
       this.schemas[field].errors = this.getErrors(field)
 
-      this.$emit('form~input', this.record)
+      // emit changes to parent
+      if (!this.readonly) {
+        this.$emit('form~input', this.record)
+      }
 
+      // get invalid fields
       const reduce = (accumulate, key) => {
         if (this.$v.record[key].$invalid) {
           accumulate[key] = true
@@ -25,6 +30,7 @@ export default {
         return accumulate
       }
       const invalids = Object.keys(this.$v.record).reduce(reduce, {})
+      // emit invalids to parent
       this.$emit('form~valid', !this.$v.$invalid, invalids)
     },
     /**
@@ -106,7 +112,7 @@ export default {
      */
     updateRecord () {
       const reduce = (accumulate, field) => {
-        accumulate[field] = this.schemas[field].default
+        accumulate[field] = this.data[field] || this.schemas[field].default
         if (this.$route.query[field]) {
           accumulate[field] = this.$route.query[field]
         }
@@ -126,7 +132,14 @@ export default {
           this.fireEvent(field, 'change')
         }
       })
+      // execute the change function of form
+      this.executeChange()
       return this
+    },
+    executeChange () {
+      if (typeof this.change === 'function') {
+        this.change(this.record, this.schemas, this)
+      }
     },
     /**
      * @param {String} field

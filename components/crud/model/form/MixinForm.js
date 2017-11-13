@@ -49,22 +49,25 @@ export default {
     tab: {
       type: String,
       default: () => ''
+    },
+    change: {
+      type: Function
     }
   },
   data: () => ({
     fields: {},
     data: {},
     errors: {},
-    status: false
+    status: false,
+    readonly: false
   }),
   methods: {
     /**
      */
     renderElements () {
       const map = item => {
-        const readonly = this.scopes[this.scope] && this.scopes[this.scope].readonly
         return Object.assign({}, item.form, {
-          disabled: readonly ? true : item.form.disabled,
+          disabled: this.readonly ? true : item.form.disabled,
           field: item.form.field,
           component: item.form.component ? (this.component + '-' + item.form.component) : ''
         })
@@ -116,6 +119,9 @@ export default {
     }
   },
   created () {
+    if (this.scopes[this.scope]) {
+      this.readonly = this.scopes[this.scope].readonly
+    }
     this.renderAll()
   },
   mounted () {
