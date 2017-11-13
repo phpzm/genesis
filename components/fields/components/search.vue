@@ -4,10 +4,11 @@
 
       <div v-show="editable" :class="{'has-error': problems.length}">
         <div ref="input" class="input full-width" :class="{'disabled': disabled}">
-          {{ selected }}
-          <div class="pull-right" style="margin: -6px -4px">
-            <app-button ref="clear" v-bind="{round: true, small: true, color: 'negative', icon: 'clear'}" class="clear"
-                        @click="clear"/>
+          <span v-if="!selected" class="field-placeholder">{{ placeholder }}</span>
+          <span v-else>{{ selected }}</span>
+          <div class="pull-right" style="margin: -6px -4px" v-if="!disabled">
+            <app-button v-if="selected" v-bind="{round: true, small: true, color: 'negative', icon: 'clear'}"
+                        class="clear" @click="clear"/>
             <app-button v-bind="{round: true, small: true, color: 'primary', icon: 'search'}"
                         @click="openWidget"/>
           </div>
@@ -25,7 +26,7 @@
         <hr class="light">
 
         <div class="field-search-header">
-          <h6>Pesquisar por {{ description || label }}</h6>
+          <h6>{{ messages.label }} {{ description || label }}</h6>
         </div>
 
         <div class="field-search-input">
@@ -94,13 +95,26 @@
         type: Object,
         default: () => ({})
       },
+      placeholder: {
+        type: String,
+        default: () => ('.:. Pesquisar .:.')
+      },
       filters: {
         type: Object,
         default: () => ({})
       },
+      parameters: {
+        type: Function,
+        default: () => {
+          return (query, remote, filters) => {
+            return Object.assign({}, {query}, {order: remote.reference.label}, filters)
+          }
+        }
+      },
       messages: {
         type: Object,
         default: () => ({
+          label: 'Pesquisar por',
           pagination: 'Exibindo registros de <b>{start}</b> de <b>{end}</b> de um total de <b>{total}</b>'
         })
       },
@@ -177,26 +191,11 @@
         this.service.post(record).then(response => this.searchData(term, true))
       },
       /**
-       * @param terms
-       * @param reset
+       * @param {string} term
+       * @param {boolean} reset
        */
-      searchData (terms, reset) {
-        let parameters = {}
-        if (this.remote.reference.label) {
-          const order = {
-            order: this.remote.reference.label
-          }
-          parameters = Object.assign({}, parameters, order)
-        }
-        if (terms) {
-          const fast = {
-            fast: terms + '~>' + this.remote.filters.join('+')
-          }
-          parameters = Object.assign({}, parameters, fast)
-        }
-        if (this.filters) {
-          parameters = Object.assign({}, parameters, this.filters)
-        }
+      searchData (term, reset) {
+        let parameters = this.parameters(term, this.remote, this.filters)
         if (reset) {
           this.pagination.page = 1
         }
@@ -244,7 +243,6 @@
         const end = start + this.pagination.size
         this.pagination.start = start + 1
         this.pagination.end = end > this.pagination.total ? this.pagination.total : end
-
 
         const map = row => ({
           value: String(row[value]),
@@ -300,6 +298,8 @@
   .field-search
     position relative
     .input
+      .field-placeholder
+        color #c3c3c3
       button
         width 32px
         height 32px
