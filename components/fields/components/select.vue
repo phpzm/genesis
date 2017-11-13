@@ -2,7 +2,7 @@
   <field :class="classNames" v-bind="{id, inline, problems, label, validate, title, tooltip, editable, visible}">
     <div slot="component">
       <div v-show="editable" :class="{'has-error': problems.length}">
-        <q-select ref="input" class="input full-width" :class="{'disabled': disable}"
+        <q-select ref="input" class="input full-width cursor-pointer" :class="{'disabled': disable}"
                   v-model="model" v-bind="{disable, options, multiple, chips, name, placeholder}"
                   @change="$emit('input', model)"/>
       </div>
