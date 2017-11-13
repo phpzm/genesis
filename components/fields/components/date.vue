@@ -67,6 +67,7 @@
     data: () => ({
       widget: '',
       updated: false,
+      programmatically: false,
       pattern: '##/##/####',
       model: ''
     }),
@@ -96,7 +97,8 @@
        */
       updateValue (value) {
         this.updated = true
-        this.$emit('input', value.split('/').reverse().join('-'))
+        this.$emit('input', value.split('/').reverse().join('-'), this.programmatically)
+        this.programmatically = false
       },
       /**
        */
@@ -106,6 +108,7 @@
     },
     watch: {
       value (value) {
+        this.programmatically = true
         this.applyValue(value)
       },
       widget (value) {
@@ -114,11 +117,13 @@
         }
         value = moment(value).startOf('day').format('YYYY-MM-DD')
         this.updated = false
+        this.programmatically = false
         this.applyValue(value)
         this.updateValue(value)
       }
     },
     mounted () {
+      this.programmatically = true
       this.applyValue(this.value)
     }
   }
@@ -136,7 +141,7 @@
         right 0
         top 0
         color #ffffff
-        padding 9px 10px 8px 10px
+        padding 8px 10px 9px 10px
         font-size 20px
         z-index 10
         border-radius 2px
