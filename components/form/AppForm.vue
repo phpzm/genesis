@@ -2,9 +2,7 @@
   <div class="app-form">
     <div v-if="tabs.length" class="tabs">
       <q-tabs v-model="tabSeletecd" inverted>
-        <!-- Tabs - notice slot="title" -->
         <q-tab v-for="tab in tabs" :key="tab.name" slot="title" v-bind="tab"/>
-        <!-- Targets -->
       </q-tabs>
       <div class="tab-content form" v-for="tab in tabs" v-show="tab.name === tabSeletecd">
         <component v-for="schema in components[tab.name]" :key="schema.field" :is="schema.component"
