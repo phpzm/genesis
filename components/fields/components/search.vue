@@ -260,6 +260,7 @@
       searchSelected (item, local = false) {
         this.selected = item.label
         this.model = item.value
+
         if (!local) {
           this.$emit('selected', item.row)
           this.$emit('input', item.value)
