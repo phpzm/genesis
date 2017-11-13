@@ -27,7 +27,6 @@ const actions = {
   },
   setAuthUser: (store, user) => {
     store.commit(CHANGE_USER, user)
-    console.log('~> setAuthUser', store.getters.getAuthRemember)
     set(APP_USER, user, store.getters.getAuthRemember)
   },
   setAuthToken: (store, token) => {
