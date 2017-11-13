@@ -1,5 +1,6 @@
 <template>
   <div class="app-form">
+
     <div v-if="tabs.length" class="tabs">
       <q-tabs v-model="tabSeletecd" inverted>
         <q-tab v-for="tab in tabs" :key="tab.name" slot="title" v-bind="tab"/>
