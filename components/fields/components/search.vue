@@ -233,7 +233,7 @@
         const value = this.remote.reference.value
         const label = this.remote.reference.label
         let details = this.remote.reference.details
-        if (!details) {
+        if (typeof details !== 'function') {
           details = row => row[value]
         }
 
