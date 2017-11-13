@@ -31,10 +31,6 @@
         type: Array,
         default: () => ([])
       },
-      positions: {
-        type: Array,
-        default: () => ([])
-      },
       outline: {
         type: Boolean,
         default: () => false
