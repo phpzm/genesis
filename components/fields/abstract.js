@@ -79,7 +79,7 @@ export default {
     /**
      */
     classNames () {
-      const classNames = this.className
+      const classNames = []
       const width = 'field has-' + String(this.inline ? '100' : this.width)
       classNames.push(width)
       classNames.push(this.$options.name)
