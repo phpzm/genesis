@@ -151,7 +151,8 @@
         total: 0,
         start: 1,
         end: 1
-      }
+      },
+      updated: false
     }),
     computed: {
       html () {
@@ -262,6 +263,7 @@
         this.model = item.value
 
         if (!local) {
+          this.updated = true
           this.$emit('selected', item.row)
           this.$emit('input', item.value)
         }
@@ -286,7 +288,10 @@
     },
     watch: {
       value (value) {
-        this.applyValue(value)
+        if (!this.updated) {
+          this.applyValue(value)
+        }
+        this.updated = false
       }
     },
     mounted () {
