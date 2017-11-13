@@ -8,13 +8,13 @@
       <div class="tab-content form" v-for="tab in tabs" v-show="tab.name === tabSeletecd">
         <component v-for="schema in components[tab.name]" :key="schema.field" :is="schema.component"
                    v-bind="schema" v-model="record[schema.field]"
-                   @input="formInput(schema.field)" @event="formEvent"></component>
+                   @input="formInput(schema.field, arguments)" @event="formEvent"></component>
       </div>
     </div>
     <div v-else class="form">
       <component v-for="schema in schemas" :key="schema.field" :is="schema.component"
                  v-bind="schema" v-model="record[schema.field]"
-                 @input="formInput(schema.field)" @event="formEvent"></component>
+                 @input="formInput(schema.field, arguments)" @event="formEvent"></component>
     </div>
   </div>
 </template>
