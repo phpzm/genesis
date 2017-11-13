@@ -3,10 +3,10 @@
     <div slot="component">
       <div v-show="editable" :class="{'has-error': problems.length}">
         <!--<q-numeric v-model="model" v-bind="bind"></q-numeric>-->
-        <div class="q-numeric input" :name="field" :id="id">
-          <i class="material-icons" @click="remove(model, step)">remove</i>
-          <input type="number" v-model="model" pattern="[0-9]*" :step="step" @input="updateValue"/>
-          <i class="material-icons" @click="add(model, step)">add</i>
+        <div class="q-numeric input" :name="field" :id="id" :class="{'disabled': disabled}">
+          <i v-if="!disabled" class="material-icons" @click="remove(model, step)">remove</i>
+          <input type="number" v-model="model" pattern="[0-9]*" :disabled="disabled" :step="step" @input="updateValue"/>
+          <i v-if="!disabled" class="material-icons" @click="add(model, step)">add</i>
         </div>
       </div>
       <div v-show="!editable" class="html" v-html="html"></div>
@@ -65,7 +65,9 @@
        */
       updateValue () {
         this.updated = true
-        this.$emit('input', this.model)
+        if (!this.disabled) {
+          this.$emit('input', this.model)
+        }
       },
       /**
        * @param {Number} value
@@ -73,6 +75,7 @@
        */
       add (value, step) {
         this.applyValue(value + step)
+        this.updateValue()
       },
       /**
        * @param {Number} value
@@ -80,6 +83,7 @@
        */
       remove (value, step) {
         this.applyValue(value - step)
+        this.updateValue()
       }
     },
     watch: {
@@ -117,6 +121,8 @@
         box-shadow none
         text-align center
         padding 3px 0 0 0
+      input[type="number" i]:disabled
+        background transparent
     .html
       height 38px
       color #515151
