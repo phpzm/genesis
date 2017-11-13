@@ -142,12 +142,12 @@ export default {
       const columns = schemas.filter(this.filterFilters)
       const filters = this.filters.filter(this.filterFilters)
 
-      const filterColumns = columns.map(this.mapFilters)
       const filterAdditional = filters.map(this.mapFilters)
+      const filterColumns = columns.map(this.mapFilters)
 
       const all = []
-      all.push(...filterColumns)
       all.push(...filterAdditional)
+      all.push(...filterColumns)
 
       this.filter.columns = all
 
