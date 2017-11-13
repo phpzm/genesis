@@ -5,7 +5,7 @@
       <div v-show="editable" :class="{'has-error': problems.length}">
         <div ref="input" class="input full-width" :class="{'disabled': disabled}">
           <span v-if="!selected" class="field-placeholder">{{ placeholder }}</span>
-          <span v-else>{{ selected }}</span>
+          <span v-else :class="'selected ellipsis'">{{ selected }}</span>
           <div class="pull-right" style="margin: -6px -4px" v-if="!disabled">
             <app-button v-if="selected" v-bind="{round: true, small: true, color: 'negative', icon: 'clear'}"
                         class="clear" @click="clear"/>
@@ -30,9 +30,8 @@
         </div>
 
         <div class="field-search-input">
-          <q-search ref="search" v-model="search" :debounce="600" inverted placeholder="Digite para pesquisar"
-                    icon="search"
-                    float-label="Pesquisa" @change="searchData(search, true)"/>
+          <q-search ref="search" v-model="search" :debounce="400" inverted placeholder="Digite para pesquisar"
+                    icon="search" float-label="Pesquisa" @change="searchData(search, true)"/>
         </div>
 
         <div class="field-search-list">
@@ -130,13 +129,9 @@
       css: {
         type: Object,
         default: () => ({
-          'maxHeight': '100%',
-          'height': '90vh',
-          'minWidth': '80vw',
-          'minHeight': '50vh',
-          'padding': '0 20px 10px 20px',
-          'border-radius': '4px 4px 0 0',
-          'overflow': 'hidden'
+          overflow: 'hidden',
+          maxHeight: '100vh',
+          height: '90vh'
         })
       }
     },
@@ -265,7 +260,7 @@
 
         if (!local) {
           this.updated = true
-          this.$emit('selected', item.row)
+          this.$emit('event', 'selected', this, item.row)
           this.$emit('input', item.value)
         }
         this.closeWidget()
@@ -307,6 +302,11 @@
     .input
       .field-placeholder
         color #c3c3c3
+      .selected
+        position absolute
+        width calc(100% - 55px)
+        overflow hidden
+        height 21px
       button
         width 32px
         height 32px
@@ -317,6 +317,12 @@
         opacity 1
 
   .field-search-modal
+    .modal-content
+      max-height 100%
+      min-width 80vw
+      min-height 50vh
+      padding 0 20px 10px 20px
+      border-radius 4px 4px 0 0
     .field-search-closer
       font-size 24px
       margin 10px -10px 0 0
@@ -332,4 +338,10 @@
         padding 40px
     .q-if:before
       content unset
+
+  @media (max-width 768px)
+    .field-search-modal
+      .modal-content
+        height 100vh !important
+        border-radius 0 !important
 </style>
