@@ -29,10 +29,11 @@ export const route = (path, name, component, props = null, meta = {}, children =
  * @param {string} scope
  * @param {string} component
  * @param {Object} meta
+ * @param {string} name
  * @returns {Object}
  */
-export const child = (path, namespace, props, uri, scope, component, meta = {}) => {
-  return route(uri, namespace + '.' + scope, component, (route) => props(scope, route), meta)
+export const child = (path, namespace, props, uri, scope, component, meta = {}, name = '') => {
+  return route(uri, name || (namespace + '.' + scope), component, (route) => props(scope, route), meta)
 }
 
 /**
