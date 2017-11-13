@@ -8,49 +8,6 @@ const arrayToObject = (accumulate, item) => {
 export default {
   methods: {
     /**
-     * @param {string} field
-     */
-    formInput (field) {
-      if (this.$v.record[field]) {
-        this.$v.record[field].$touch()
-      }
-      // pass errors to fields
-      this.schemas[field].errors = this.getErrors(field)
-
-      // emit changes to parent
-      if (!this.readonly) {
-        this.$emit('form~input', this.record)
-      }
-
-      // get invalid fields
-      const reduce = (accumulate, key) => {
-        if (this.$v.record[key].$invalid) {
-          accumulate[key] = true
-        }
-        return accumulate
-      }
-      const invalids = Object.keys(this.$v.record).reduce(reduce, {})
-      // emit invalids to parent
-      this.$emit('form~valid', !this.$v.$invalid, invalids)
-    },
-    /**
-     * @param {string} event
-     * @param {Vue} schema
-     */
-    formEvent (event, schema) {
-      const field = schema.field
-      this.fireEvent(field, event)
-    },
-    /**
-     * @param {string} field
-     * @param {string} event
-     */
-    fireEvent (field, event) {
-      if (this.schemas[field] && this.schemas[field].events && typeof this.schemas[field].events[event] === 'function') {
-        this.schemas[field].events[event](this.record, this.schemas, this)
-      }
-    },
-    /**
      */
     touch () {
       this.$v.$touch()
@@ -127,19 +84,82 @@ export default {
      */
     setRecord (record) {
       this.record = record
-      Object.keys(record).forEach(field => {
-        if (record[field] !== undefined && this.schemas[field]) {
-          this.fireEvent(field, 'change')
-        }
-      })
-      // execute the change function of form
       this.executeChange()
       return this
     },
+    /**
+     * @param {string} field
+     * @param {Object} parameters
+     */
+    isProgrammatically (parameters) {
+      if (typeof parameters !== 'object') {
+        return false
+      }
+      const args = [...parameters]
+      if (args.length <= 1) {
+        return false
+      }
+      return parameters[1] === true
+    },
+    /**
+     * @param {string} field
+     * @param {Object} parameters
+     */
+    formInput (field, parameters = []) {
+      const programmatically = this.isProgrammatically(parameters)
+      if (programmatically) {
+        return
+      }
+      if (this.$v.record[field]) {
+        this.$v.record[field].$touch()
+      }
+      // pass errors to fields
+      this.schemas[field].errors = this.getErrors(field)
+
+      // emit changes to parent
+      if (!this.readonly) {
+        console.warn('~> programmatically', field, programmatically)
+        this.fireEvent(field, 'change')
+        this.$emit('form~input', this.record)
+      }
+
+      // get invalid fields
+      const reduce = (accumulate, key) => {
+        if (this.$v.record[key].$invalid) {
+          accumulate[key] = true
+        }
+        return accumulate
+      }
+      const invalids = Object.keys(this.$v.record).reduce(reduce, {})
+      // emit invalids to parent
+      this.$emit('form~valid', !this.$v.$invalid, invalids)
+    },
+    /**
+     * @param {string} event
+     * @param {Vue} $field
+     * @param {Object} parameters
+     */
+    formEvent (event, $field, parameters = {}) {
+      const field = $field.field
+      this.fireEvent(field, event, parameters)
+    },
+    /**
+     * @param {string} field
+     * @param {string} event
+     * @param {Object} parameters
+     */
+    fireEvent (field, event, parameters = {}) {
+      if (this.schemas[field] && this.schemas[field].events && typeof this.schemas[field].events[event] === 'function') {
+        this.schemas[field].events[event](this.record, this.schemas, this, parameters)
+      }
+    },
+    /**
+     */
     executeChange () {
       if (typeof this.change === 'function') {
         this.change(this.record, this.schemas, this)
       }
+      this.modified = true
     },
     /**
      * @param {String} field

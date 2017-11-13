@@ -76,6 +76,7 @@ export default {
     }
   },
   data: () => ({
+    fields: [],
     columns: [],
     data: [],
     page: 1,
@@ -87,12 +88,14 @@ export default {
     /**
      */
     renderElements () {
-      this.columns = this.schemas.filter(this.filterColumns).map(this.mapColumns)
+      this.fields = this.schemas.filter(this.filterColumns).map(this.mapColumns)
       let method = 'unshift'
       if (this.position === 'right') {
         method = 'push'
       }
-      this.columns[method]({field: 'options', label: 'Opções', width: '70px'})
+      this.fields[method]({field: 'options', label: 'Opções', width: '70px'})
+
+      this.columns = this.fields.filter(field => !field.hidden)
     },
     /**
      * @param {Object} item

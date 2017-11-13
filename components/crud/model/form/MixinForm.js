@@ -28,6 +28,7 @@ export default {
           read: (response) => {
             const populateForm = Data.get('form')
             populateForm(this, response)
+            this.$refs.form.setRecord(this.data)
           },
           update: (response) => {
             toast(wildcard(this.messages.update, this.$http.$body(response)))
