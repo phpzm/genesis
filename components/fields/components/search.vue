@@ -32,7 +32,7 @@
         <div class="field-search-input">
           <q-search ref="search" v-model="search" :debounce="600" inverted placeholder="Digite para pesquisar"
                     icon="search"
-                    float-label="Pesquisar" @change="searchData(search, true)"/>
+                    float-label="Pesquisa" @change="searchData(search, true)"/>
         </div>
 
         <div class="field-search-list">
@@ -53,7 +53,8 @@
               O termo pesquisado não retornou resultados. Você pode adicionar um novo item usando:
               &nbsp;<span style="font-style: italic">`{{ search }}`</span>
               <br><br>
-              <app-button class="primary" icon="add" color="primary" label="Criar novo Item"/>
+              <app-button class="primary" icon="add" color="primary" label="Criar novo Item"
+                          @click="searchRegister(search)"/>
             </div>
             <div v-else class="text-center">
               <small>Nenhum registro encontrado</small>
@@ -168,7 +169,7 @@
       openWidget () {
         this.$refs.modal.open()
         window.setTimeout(this.$refs.search.focus, 100)
-        this.searchData('')
+        this.searchData(this.search)
       },
       /**
        */
@@ -185,11 +186,11 @@
       /**
        * @param {string} term
        */
-      addNewRecord (term) {
+      searchRegister (term) {
         const record = {}
         record[this.remote.reference.label] = term
         // noinspection JSValidateTypes
-        this.service.post(record).then(response => this.searchData(term, true))
+        this.remote.service.post(record).then(response => this.searchData(term, true))
       },
       /**
        * @param {string} term
