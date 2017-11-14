@@ -1,7 +1,7 @@
 <template>
   <q-layout ref="layout" v-model="sides" v-bind="{view, leftBreakpoint, reveal}" :class="classNames">
 
-    <q-toolbar slot="header" class="">
+    <q-toolbar slot="header" v-bind="toolbar">
       <slot name="header">
         <q-btn flat @click="toggleLeft">
           <q-icon name="menu"></q-icon>
@@ -103,6 +103,10 @@
           height: 'calc(100vh - 95px)',
           padding: '0'
         })
+      },
+      toolbar: {
+        type: Object,
+        default: () => ({})
       },
       shadow: {
         type: Boolean,
