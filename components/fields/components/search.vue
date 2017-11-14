@@ -6,11 +6,11 @@
         <div ref="input" class="input full-width" :class="{'disabled': disabled}">
           <span v-if="!selected" class="field-placeholder">{{ placeholder }}</span>
           <span v-else :class="'selected ellipsis'">{{ selected }}</span>
-          <div class="pull-right" style="margin: -6px -4px" v-if="!disabled">
-            <app-button v-if="selected" v-bind="{round: true, small: true, color: 'negative', icon: 'clear'}"
+          <div class="pull-right" style="margin: -10px -9px" v-if="!disabled">
+            <app-button v-if="selected" v-bind="{small: true, round: true, color: 'negative', icon: 'clear'}"
                         class="clear" @click="clear"/>
-            <app-button v-bind="{round: true, small: true, color: 'primary', icon: 'search'}"
-                        @click="openWidget"/>
+            <app-button v-bind="{small: true, raised: false, rotate: false, color: 'primary', icon: 'search'}"
+                        class="widget" @click="openWidget"/>
           </div>
         </div>
       </div>
@@ -308,9 +308,15 @@
         overflow hidden
         height 21px
       button
-        width 32px
-        height 32px
+        &.widget
+          width 40px
+          height 38px
+          box-shadow none
+        i
+          font-size 20px
         &.clear
+          height 30px
+          width 30px
           transition opacity .9s
           opacity 0
       &:hover button.clear
