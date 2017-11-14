@@ -1,6 +1,6 @@
 {
   "name": "genesis",
-  "version": "0.0.1",
+  "version": "~",
   "description": "RAD dashboard tools using Quasar",
   "main": "index.js",
   "scripts": {
