@@ -118,7 +118,6 @@ export default {
 
       // emit changes to parent
       if (!this.readonly) {
-        console.warn('~> programmatically', field, programmatically)
         this.fireEvent(field, 'change')
         this.$emit('form~input', this.record)
       }
