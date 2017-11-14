@@ -89,11 +89,14 @@ export default {
      */
     renderElements () {
       this.fields = this.schemas.filter(this.filterColumns).map(this.mapColumns)
-      let method = 'unshift'
-      if (this.position === 'right') {
-        method = 'push'
+
+      if (this.buttons.middle.length) {
+        let method = 'unshift'
+        if (this.position === 'right') {
+          method = 'push'
+        }
+        this.fields[method]({field: 'options', label: 'Opções', width: '70px'})
       }
-      this.fields[method]({field: 'options', label: 'Opções', width: '70px'})
 
       this.columns = this.fields.filter(field => !field.hidden)
     },

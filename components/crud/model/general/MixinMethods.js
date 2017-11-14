@@ -101,8 +101,8 @@ export default {
     /**
      */
     renderAll () {
-      this.renderElements()
       this.renderActions()
+      this.renderElements()
     },
     /**
      * @param {AxiosResponse} response
