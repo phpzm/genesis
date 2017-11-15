@@ -95,6 +95,7 @@ export const meta = (icon, label, title, tooltip = '', namespace = '', permissio
  * @param {string} id
  * @param {string} namespace
  * @param {int} permission
+ * @param {string} color
  * @returns {Function}
  */
 export const menu = (icon, label, path, exact = false, tooltip = '', id = '', namespace = '', permission = 1, color = 'faded') => {
