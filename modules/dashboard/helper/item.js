@@ -8,10 +8,10 @@
  * @param {string} namespace
  * @param {int} permission
  */
-export default (id, to, label, icon, exact = false, tooltip = '', namespace = '', permission = 1) => {
+export default (id, to, label, icon, exact = false, tooltip = '', namespace = '', permission = 1, color) => {
   const item = {to, label, exact, id, tooltip, namespace, permission}
   if (icon) {
-    item.left = {icon}
+    item.left = {icon, color}
   }
   return item
 }
