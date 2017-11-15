@@ -4,7 +4,7 @@
       <div v-show="editable" class="component" :class="{'has-error': problems.length}">
         <i class="material-icons bg-primary" @click="openWidget">&#xE878;</i>
         <q-datetime ref="widget" v-model="widget"
-                    v-bind="{type, format24h, okLabel, cancelLabel, clearLabel}"></q-datetime>
+                    v-bind="{type, monthNames, dayNames, format24h, okLabel, cancelLabel, clearLabel}"></q-datetime>
         <input ref="input" class="input full-width" autocomplete="off"
                v-mask="pattern"
                v-model="model" v-bind="{id, name, placeholder, maxlength, disabled}"
@@ -54,14 +54,6 @@
       clearLabel: {
         type: String,
         default: () => 'Limpar'
-      },
-      monthNames: {
-        type: Array,
-        default: () => View.get('locales.date.month')
-      },
-      dayNames: {
-        type: Array,
-        default: () => View.get('locales.date.days.week')
       }
     },
     data: () => ({
@@ -69,7 +61,9 @@
       updated: false,
       programmatically: false,
       pattern: '##/##/####',
-      model: ''
+      model: '',
+      monthNames: '', // View.get('locales.date.month')
+      dayNames: '' // View.get('locales.date.days.week')
     }),
     computed: {
       html () {
@@ -122,6 +116,10 @@
         this.updateValue(value)
       }
     },
+    created () {
+      this.monthNames = View.get('locales.date.months')
+      this.dayNames = View.get('locales.date.days.week')
+    },
     mounted () {
       this.programmatically = true
       this.applyValue(this.value)
@@ -141,7 +139,7 @@
         right 0
         top 0
         color #ffffff
-        padding 8px 10px 9px 10px
+        padding 8px 4px 9px 6px
         font-size 20px
         z-index 10
         border-radius 2px
@@ -150,7 +148,7 @@
         z-index 9
         top 0
         right 0
-        width 38px
+        width 28px
         height 28px
         min-width inherit
         min-height inherit
