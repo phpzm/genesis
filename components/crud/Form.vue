@@ -6,8 +6,10 @@
     </slot>
 
     <hr v-if="top">
-    <app-form ref="form" v-bind="{tabs, tab, fields, data, readonly, change, watches, debug}"
-              @form~input="input" @form~valid="valid"/>
+    <slot name="body">
+      <app-form ref="form" v-bind="{tabs, tab, fields, data, readonly, change, watches, debug}"
+                @form~input="input" @form~valid="valid"/>
+    </slot>
     <hr v-if="bottom">
 
     <slot v-if="bottom" name="bottom">

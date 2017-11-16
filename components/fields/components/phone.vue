@@ -36,28 +36,36 @@
       maxlength: '16'
     }),
     methods: {
+      /**
+       * @param {Object} $event
+       */
       keypress ($event) {
-        this.pattern = '(##) ####-####'
-        if ($event.target.value.length > 13) {
-          this.pattern = '(##) #-####-####'
+        this.updateMask($event.target.value)
+      },
+      /**
+       * @param {string} value
+       */
+      updateMask (value) {
+        let pattern = '(##) ####-####'
+        if (String(value).length > 13) {
+          pattern = '(##) #-####-####'
         }
+        this.pattern = pattern
       },
       /**
        * @param {*} value
        */
       applyValue (value) {
-        if (value === undefined) {
+        if (value === undefined || value === null) {
           return
         }
-        if (value === null) {
-          return
-        }
-        value = String(value)
-        value = mask(this.pattern, value)
+        const string = String(value)
+        this.updateMask(mask(this.pattern, string))
+        const masked = value = mask(this.pattern, string)
 
-        this.html = value
+        this.html = masked
         if (this.$refs.input) {
-          this.$refs.input.value = value
+          this.$refs.input.value = masked
         }
       }
     },

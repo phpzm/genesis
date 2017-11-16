@@ -78,7 +78,7 @@
   }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
+<style lang="stylus" rel="stylesheet/stylus">
   .field-wysiwyg
     .fr-wrapper
       min-height 300px

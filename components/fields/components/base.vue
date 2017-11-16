@@ -64,8 +64,11 @@
   }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
+<style lang="stylus" rel="stylesheet/stylus">
   .field-base
+    .input
+      font-size 1em
+      font-family Roboto
     .has-error input
       background rgba(249, 125, 125, 0.2)
     input:-webkit-autofill
