@@ -65,6 +65,8 @@
       margin 0 10px 0 0
       .q-option-label
         margin-left 4px !important
+        font-size 1em
+        font-family Roboto
     .html
       height 38px
       color #515151
