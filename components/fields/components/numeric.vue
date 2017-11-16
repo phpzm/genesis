@@ -123,6 +123,7 @@
         padding 3px 0 0 0
       input[type="number" i]:disabled
         background transparent
+        width 100%
     .html
       height 38px
       color #515151

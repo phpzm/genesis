@@ -122,11 +122,16 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @import '~variables'
+
   .field-select
     .q-if-control
       position absolute
       right 0
-      top 7px
+      top -1px
+      background $primary
+      height 37px
+      width 30px
 
   .field-select
     .q-if-disabled:before

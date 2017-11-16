@@ -8,20 +8,20 @@
       </small>
       <hr>
       <template v-for="item in menu.children">
-        <app-drawer-menu-item :menu="item" :badges="badges" :shadow="shadow"></app-drawer-menu-item>
+        <app-drawer-menu-item :menu="item" :badges="badges" :shadow="shadow"/>
       </template>
     </div>
 
-    <q-collapsible v-else-if="isCollapsible" ref="collapse" v-bind="collapsible">
+    <app-collapsible v-else-if="isCollapsible" ref="collapse" v-bind="collapsible">
       <template v-for="child in menu.children">
-        <app-drawer-menu-item :menu="child" :badges="badges" :shadow="shadow"></app-drawer-menu-item>
+        <app-drawer-menu-item :menu="child" :badges="badges" :shadow="shadow"/>
       </template>
-    </q-collapsible>
+    </app-collapsible>
 
     <q-side-link v-else :to="menu.to" :exact="menu.exact" item>
-      <q-item-side v-if="menu.left" v-bind="menu.left"></q-item-side>
-      <q-item-main :label="menu.label" :sublabel="menu.sublabel"></q-item-main>
-      <q-item-side v-if="menu.right" v-bind="menu.right" right></q-item-side>
+      <q-item-side v-if="menu.left" v-bind="menu.left"/>
+      <q-item-main :label="menu.label" :sublabel="menu.sublabel"/>
+      <q-item-side v-if="menu.right" v-bind="menu.right" right/>
     </q-side-link>
 
     <q-chip v-if="badges[menu.id]" v-bind="badge">{{ badges[menu.id] }}</q-chip>
@@ -31,8 +31,13 @@
 </template>
 
 <script type="text/javascript">
+  import AppCollapsible from 'genesis/components/collapsible/AppCollapsible.vue'
+
   export default {
     name: 'app-drawer-menu-item',
+    components: {
+      AppCollapsible
+    },
     props: {
       menu: {
         type: Object,
@@ -57,7 +62,10 @@
           'label': this.menu.label
         }
         if (this.menu.icon) {
-          collapsible['icon'] = this.menu.icon
+          collapsible['icon'] = {
+            name: this.menu.icon,
+            color: this.menu.color,
+          }
         }
         return collapsible
       },

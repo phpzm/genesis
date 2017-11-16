@@ -1,7 +1,5 @@
 require('./themes/fonts/index.styl')
 
-console.warn('~> genesis')
-
 export { default as Http } from 'genesis/settings/http'
 export { default as Auth } from 'genesis/settings/auth'
 export { default as Crud } from 'genesis/settings/crud'

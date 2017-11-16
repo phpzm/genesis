@@ -60,6 +60,10 @@ export default {
       type: Number,
       default: () => 100
     },
+    watches: {
+      type: Object,
+      default: () => ({})
+    },
     direction: {
       type: String,
       default: () => 'right'

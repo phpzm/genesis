@@ -6,7 +6,7 @@
     </slot>
 
     <hr v-if="top">
-    <app-form ref="form" v-bind="{tabs, tab, fields, data, readonly, change, debug}"
+    <app-form ref="form" v-bind="{tabs, tab, fields, data, readonly, change, watches, debug}"
               @form~input="input" @form~valid="valid"/>
     <hr v-if="bottom">
 

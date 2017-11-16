@@ -20,6 +20,10 @@ export default {
       type: Boolean,
       default: () => (false)
     },
+    watches: {
+      type: Object,
+      default: () => ({})
+    },
     change: {
       type: Function
     }
