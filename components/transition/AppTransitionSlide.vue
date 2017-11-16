@@ -1,7 +1,7 @@
 <template>
   <div ref="wrapper" class="transition-slide" :style="{width: width, height: height}">
     <transition :name="transition">
-      <router-view class="router-view" :key="key" :style="style"></router-view>
+      <router-view class="router-view" title="" :key="key" :style="style"></router-view>
     </transition>
   </div>
 </template>
