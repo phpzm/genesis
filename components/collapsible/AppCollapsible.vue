@@ -1,6 +1,6 @@
 <template>
-  <div class="q-collapsible q-item-division relative-position" :class="{'q-collapsible-open': open}">
-    <div class="q-item q-item-division relative-position q-item-link" @click="open = !open">
+  <div class="q-collapsible q-item-division relative-position" :class="{'q-collapsible-open': opened}">
+    <div class="q-item q-item-division relative-position q-item-link" @click="opened = !opened">
       <div v-if="icon" class="q-item-side q-item-side-left q-item-section">
         <q-icon v-bind="icon"/>
       </div>
@@ -34,8 +34,19 @@
       }
     },
     data: () => ({
-      open: false
-    })
+      opened: false
+    }),
+    methods: {
+      open () {
+        this.opened = true
+      },
+      close () {
+        this.opened = true
+      },
+      toggle () {
+        this.opened = !this.opened
+      }
+    }
   }
 </script>
 
