@@ -49,7 +49,7 @@
   .q-collapsible-sub-inner
     max-height 0
     overflow hidden
-    transition max-height .7s
+    transition max-height 1s
   .q-item-side.q-item-side-right
     .q-icon
       transition transform  .7s
@@ -60,5 +60,5 @@
         transform rotate(180deg)
     & > .q-collapsible-sub-inner
       max-height 100vh
-      transition max-height .7s
+      transition max-height 2s
 </style>
