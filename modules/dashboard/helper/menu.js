@@ -3,5 +3,6 @@
  * @param {string} label
  * @param {string} icon
  * @param {Array} children
+ * @param {string} namespace
  */
-export default (id, label, icon, children) => ({id, label, icon, children})
+export default (id, label, icon, children, namespace) => ({id, label, icon, children, namespace})

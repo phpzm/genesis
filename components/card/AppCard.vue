@@ -1,5 +1,5 @@
 <template>
-  <div class="app-card">
+  <div class="app-card" title="">
     <slot name="top"/>
     <q-card>
       <q-card-title v-if="header" class="q-card--title">
