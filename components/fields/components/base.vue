@@ -67,7 +67,7 @@
 <style lang="stylus" rel="stylesheet/stylus">
   .field-base
     .input
-      font-size 1em
+      font-size 13px
       font-family Roboto
     .has-error input
       background rgba(249, 125, 125, 0.2)
