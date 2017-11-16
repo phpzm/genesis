@@ -22,7 +22,7 @@
             <q-list item-separator highlight link>
               <!--suppress CommaExpressionJS -->
               <q-item v-for="(menu, index) in getDashboardOptions" :key="index" @click="handlerMenu(menu)" separator>
-                <q-item-side :icon="menu.icon"></q-item-side>
+                <q-item-side :color="menu.color" :icon="menu.icon"></q-item-side>
                 <q-item-main>{{ menu.label }}</q-item-main>
               </q-item>
             </q-list>
