@@ -40,8 +40,8 @@
             <q-list link separator multiline>
               <q-item v-for="(row, key) in rows" :key="key" @click="searchSelected(row)">
                 <q-item-main>
-                  <q-item-tile label>{{ row.label }}</q-item-tile>
-                  <q-item-tile sublabel>{{ row.sublabel }}</q-item-tile>
+                  <q-item-tile label v-html="row.label"/>
+                  <q-item-tile sublabel v-html="row.sublabel"/>
                 </q-item-main>
               </q-item>
             </q-list>
@@ -192,6 +192,7 @@
        * @param {boolean} reset
        */
       searchData (term, reset) {
+        console.log('~> searchData', this.parameters)
         let parameters = this.parameters(term, this.remote, this.filters)
         if (reset) {
           this.pagination.page = 1
@@ -203,6 +204,7 @@
        * @param done
        */
       searchRequest (filters, done) {
+        console.log('~> searchRequest')
         /**
          * @type {Function}
          */
