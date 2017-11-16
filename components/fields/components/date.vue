@@ -2,7 +2,7 @@
   <field :class="classNames" v-bind="{id, inline, problems, label, validate, title, tooltip, editable, visible}">
     <div slot="component">
       <div v-show="editable" class="component" :class="{'has-error': problems.length}">
-        <i class="material-icons bg-primary" @click="openWidget">&#xE878;</i>
+        <i class="material-icons bg-primary" :class="{'disabled': disabled}" @click="openWidget">&#xE878;</i>
         <q-datetime ref="widget" v-model="widget"
                     v-bind="{type, monthNames, dayNames, format24h, okLabel, cancelLabel, clearLabel}"></q-datetime>
         <input ref="input" class="input full-width" autocomplete="off"
@@ -97,7 +97,9 @@
       /**
        */
       openWidget () {
-        this.$refs.widget.open()
+        if (!this.disabled) {
+          this.$refs.widget.open()
+        }
       }
     },
     watch: {
@@ -139,7 +141,7 @@
         right 0
         top 0
         color #ffffff
-        padding 8px 4px 9px 6px
+        padding 8px 4px 9px 5px
         font-size 20px
         z-index 10
         border-radius 2px
