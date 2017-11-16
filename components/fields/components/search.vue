@@ -309,9 +309,11 @@
         height 21px
       button
         &.widget
-          width 40px
+          width 30px
           height 38px
+          padding 0 15px
           box-shadow none
+          overflow hidden
         i
           font-size 20px
         &.clear

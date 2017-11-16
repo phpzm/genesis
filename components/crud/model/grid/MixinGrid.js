@@ -169,6 +169,19 @@ export default {
      */
     catch (error, method, parameters) {
       console.log('~>', this.$options.name, error)
+    },
+    /**
+     * @param {AxiosResponse} response
+     * @param {string} method
+     * @param {Function} callback
+     */
+    then (response, method, callback = null) {
+      if (this.handlers[method]) {
+        this.handlers[method](response)
+      }
+      if (typeof callback === 'function') {
+        callback(response)
+      }
     }
   },
   created () {

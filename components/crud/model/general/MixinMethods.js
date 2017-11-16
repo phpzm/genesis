@@ -105,19 +105,6 @@ export default {
       this.renderElements()
     },
     /**
-     * @param {AxiosResponse} response
-     * @param {string} method
-     * @param {Function} callback
-     */
-    then (response, method, callback = null) {
-      if (this.handlers[method]) {
-        this.handlers[method](response)
-      }
-      if (typeof callback === 'function') {
-        callback(response)
-      }
-    },
-    /**
      * @param {Object} action
      */
     handler (action) {

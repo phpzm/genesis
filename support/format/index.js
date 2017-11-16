@@ -1,4 +1,5 @@
 import moment from 'moment'
+import { get } from 'lodash'
 import { money, mask } from 'genesis/support/utils'
 
 /**
@@ -70,7 +71,7 @@ export const formatOptions = (options) => {
   return (value) => {
     if (Array.isArray(options)) {
       const option = options.find(option => String(option.value) === String(value))
-      return option && option.label ? option.label : ''
+      return get(option, 'label', '')
     }
     return value
   }
