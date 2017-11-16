@@ -174,6 +174,15 @@ export default {
         })
       }
       return errors
+    },
+    /**
+     * @param {string} namespace
+     * @param {AxiosResponse} response
+     */
+    fireWatch (namespace, response) {
+      if (this.watches[namespace] && typeof this.watches[namespace] === 'function') {
+        this.watches[namespace](this.record, this.schemas, this, response)
+      }
     }
   }
 }

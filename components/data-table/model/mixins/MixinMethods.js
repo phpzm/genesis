@@ -46,6 +46,15 @@ export default {
     props (slot, cell) {
       const props = slot.props || {}
       return {...props, value: cell.data, record: cell.row, user: this.getAuthUser}
+    },
+    /**
+     * @param {string} method
+     * @param {AxiosResponse} response
+     */
+    fireAfter (method, response) {
+      if (this.after[method] && typeof this.after[method] === 'function') {
+        this.after[method](this.record, this.schemas, this, response)
+      }
     }
   }
 }

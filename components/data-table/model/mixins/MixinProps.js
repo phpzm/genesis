@@ -16,6 +16,10 @@ export default {
       type: Array,
       default: () => ([])
     },
+    watches: {
+      type: Object,
+      default: () => ({})
+    },
     position: {
       type: String,
       default: () => 'left'

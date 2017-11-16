@@ -28,7 +28,7 @@ export default {
           read: (response) => {
             const populateForm = Data.get('form')
             populateForm(this, response)
-            this.$refs.form.setRecord(this.data)
+            // this.$refs.form.setRecord(this.data)
           },
           update: (response) => {
             toast(wildcard(this.messages.update, this.$http.$body(response)))
@@ -69,7 +69,7 @@ export default {
       const map = item => {
         return Object.assign({}, item.form, {
           disabled: this.readonly ? true : item.form.disabled,
-          field: item.form.field,
+          field: item.field,
           component: item.form.component ? (this.component + '-' + item.form.component) : ''
         })
       }
@@ -93,18 +93,23 @@ export default {
       this.errors = errors
     },
     /**
-     * @param {AxiosError} error
-     * @param {string} method
-     * @param {Array} parameters
-     */
-    catch (error, method, parameters) {
-      console.log('~>', this.$options.name, error)
-    },
-    /**
      * @param {string} id
      */
     fetchData (id) {
       window.setTimeout(() => this.read(id), this.timeout)
+    },
+    /**
+     * @param {AxiosResponse} response
+     * @param {string} method
+     * @param {Function} callback
+     */
+    then (response, method, callback = null) {
+      if (this.handlers[method]) {
+        this.handlers[method](response)
+      }
+      if (typeof callback === 'function') {
+        callback(response)
+      }
     },
     /**
      * @param {boolean}
@@ -115,7 +120,7 @@ export default {
     status () {
       this.renderActions()
     },
-    data () {
+    data (current, previous) {
       this.renderActions()
     }
   },
