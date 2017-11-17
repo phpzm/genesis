@@ -192,7 +192,6 @@
        * @param {boolean} reset
        */
       searchData (term, reset) {
-        console.log('~> searchData', this.parameters)
         let parameters = this.parameters(term, this.remote, this.filters)
         if (reset) {
           this.pagination.page = 1
@@ -204,7 +203,6 @@
        * @param done
        */
       searchRequest (filters, done) {
-        console.log('~> searchRequest')
         /**
          * @type {Function}
          */

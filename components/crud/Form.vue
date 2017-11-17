@@ -1,5 +1,5 @@
 <template>
-  <div class="app-crud-grid">
+  <div class="app-crud-grid" :class="classNames">
 
     <slot v-if="top" name="top">
       <app-button-bar :buttons="buttons.top" :handler="handler" :direction="direction" :record="data"/>

@@ -1,6 +1,6 @@
 <!--suppress RequiredAttributes -->
 <template>
-  <div class="app-crud-grid" :class="{'--grid-filtering': filter.active}">
+  <div class="app-crud-grid" :class="classNames">
 
     <slot v-if="top" name="top">
       <app-grid-toolbar v-bind="{handler, direction, page, pages, limit, total, paginate, buttons: buttons.top}"

@@ -84,6 +84,21 @@ export default {
     limit: 25,
     total: 1
   }),
+  computed: {
+    classNames () {
+      const classNames = []
+      if (this.className) {
+        classNames.push(this.className)
+      }
+      if (this.$route.name) {
+        classNames.push(this.$route.name)
+      }
+      if (this.filter.active) {
+        classNames.push('--grid-filtering')
+      }
+      return classNames
+    }
+  },
   methods: {
     /**
      */

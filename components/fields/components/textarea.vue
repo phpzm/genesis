@@ -28,10 +28,23 @@
         return this.value
       }
     },
+    methods: {
+      /**
+       * @param {String} value
+       */
+      applyValue (value) {
+        if (value !== undefined) {
+          this.$refs.input.value = value
+        }
+      }
+    },
     watch: {
       value (value) {
-        this.$refs.input.value = value
+        this.applyValue(this.value)
       }
+    },
+    mounted () {
+      this.applyValue(this.value)
     }
   }
 </script>

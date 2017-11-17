@@ -68,6 +68,10 @@ export default {
       type: String,
       default: () => 'right'
     },
+    className: {
+      type: Array,
+      default: () => ([])
+    },
     debug: {
       type: Boolean,
       default: () => false
