@@ -62,6 +62,18 @@ export default {
     status: false,
     readonly: false
   }),
+  computed: {
+    classNames () {
+      const classNames = []
+      if (this.className) {
+        classNames.push(this.className)
+      }
+      if (this.$route.meta.name) {
+        classNames.push(this.$route.meta.name)
+      }
+      return classNames
+    }
+  },
   methods: {
     /**
      */
