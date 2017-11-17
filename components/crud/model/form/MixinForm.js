@@ -124,6 +124,14 @@ export default {
       }
     },
     /**
+     * @param {AxiosError} error
+     * @param {string} method
+     * @param {Array} parameters
+     */
+    catch (error, method, parameters) {
+      console.log('~>', this.$options.name, error)
+    },
+    /**
      * @param {boolean}
      */
     ...mapActions(['setAppModified'])
