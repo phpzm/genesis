@@ -189,14 +189,6 @@ export default {
       if (typeof callback === 'function') {
         callback(response)
       }
-    },
-    /**
-     * @param {AxiosError} error
-     * @param {string} method
-     * @param {Array} parameters
-     */
-    catch (error, method, parameters) {
-      console.log('~>', this.$options.name, error)
     }
   },
   created () {

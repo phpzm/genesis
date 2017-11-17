@@ -54,6 +54,18 @@ export default {
         .catch(error => this.catch(error, 'search', [parameters]))
     },
     /**
+     * @param {AxiosError} error
+     * @param {string} method
+     * @param {Array} parameters
+     */
+    catch (error, method, parameters) {
+      const handler = get(this.error, method, undefined)
+      if (typeof handler === 'function') {
+        return handler(error, parameters)
+      }
+      console.error(error)
+    },
+    /**
      * @param {Object} record
      * @param {Function} callback
      * @returns {record}
