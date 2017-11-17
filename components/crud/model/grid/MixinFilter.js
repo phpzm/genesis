@@ -87,7 +87,8 @@ export default {
       const base = {
         component: this.parseFilterComponent(filter, grid, form),
         value: get(filter, 'value', undefined),
-        rule: get(filter, 'rule', this.rule)
+        rule: get(filter, 'rule', this.rule),
+        disabled: false
       }
       const map = Object.assign({}, form, grid, base)
       map.width = 100
@@ -138,7 +139,7 @@ export default {
      */
     renderFilters () {
       const schemas = clone(this.schemas)
-      schemas.shift()
+
       const columns = schemas.filter(this.filterFilters)
       const filters = this.filters.filter(this.filterFilters)
 
