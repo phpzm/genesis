@@ -72,6 +72,15 @@ export default {
       type: Array,
       default: () => ([])
     },
+    error: {
+      type: Array,
+      default: () => ({
+        create: (error, parameters) => console.error(error, parameters),
+        read: (error, parameters) => console.error(error, parameters),
+        update: (error, parameters) => console.error(error, parameters),
+        destroy: (error, parameters) => console.error(error, parameters)
+      })
+    },
     debug: {
       type: Boolean,
       default: () => false

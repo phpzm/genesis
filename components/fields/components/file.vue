@@ -1,10 +1,17 @@
 <template>
   <field :class="classNames" v-bind="{id, inline, problems, label, validate, title, tooltip, editable, visible}">
-    <div slot="component">
-      <div v-if="download" class="file-link">
-        <a href="#">{{ download }}</a>
+    <div slot="component" :class="{'row': image}">
+      <template v-if="download">
+        <div v-if="image" class="col-2">
+          <img :src="download" class="image"/>
+        </div>
+        <div v-else :class="'file-link'">
+          <a :href="href">{{ download }}</a>
+        </div>
+      </template>
+      <div v-if="!disabled" :class="{'col': image}">
+        <q-uploader ref="input" v-bind="bind" @add="add" @uploaded="uploaded"></q-uploader>
       </div>
-      <q-uploader ref="input" v-bind="bind" @add="add" @uploaded="uploaded"></q-uploader>
     </div>
   </field>
 </template>
@@ -30,6 +37,10 @@
       },
       extensions: {
         default: ''
+      },
+      image: {
+        type: Boolean,
+        default: () => false
       }
     },
     data: () => ({
@@ -56,6 +67,24 @@
             }
           ]
         }
+      },
+      src () {
+        if (typeof this.src === 'string') {
+          return this.src.replace('{download}', this.download)
+        }
+        if (typeof this.src === 'function') {
+          return this.src(this.download)
+        }
+        return this.download
+      },
+      href () {
+        if (typeof this.href === 'string') {
+          return this.href.replace('{download}', this.download)
+        }
+        if (typeof this.href === 'function') {
+          return this.href(this.download)
+        }
+        return '#'
       }
     },
     methods: {
@@ -96,4 +125,7 @@
   .field-file
     .file-link
       padding 10px 0
+    .image
+      max-height 100%
+      max-width 50%
 </style>

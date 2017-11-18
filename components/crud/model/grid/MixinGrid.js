@@ -178,14 +178,6 @@ export default {
       window.setTimeout(search, this.timeout)
     },
     /**
-     * @param {AxiosError} error
-     * @param {string} method
-     * @param {Array} parameters
-     */
-    catch (error, method, parameters) {
-      console.log('~>', this.$options.name, error)
-    },
-    /**
      * @param {AxiosResponse} response
      * @param {string} method
      * @param {Function} callback
