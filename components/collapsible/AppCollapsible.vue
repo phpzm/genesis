@@ -9,7 +9,7 @@
       </div>
       <div class="q-item-side q-item-side-right q-item-section">
         <div class="cursor-pointer relative-position inline-block">
-          <q-icon name="keyboard_arrow_up"></q-icon>
+          <q-icon :color="icon.color" name="keyboard_arrow_up"></q-icon>
         </div>
       </div>
     </div>

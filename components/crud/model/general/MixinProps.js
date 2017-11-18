@@ -73,7 +73,7 @@ export default {
       default: () => ([])
     },
     error: {
-      type: Array,
+      type: Object,
       default: () => ({
         create: (error, parameters) => console.error(error, parameters),
         read: (error, parameters) => console.error(error, parameters),
