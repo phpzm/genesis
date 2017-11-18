@@ -76,3 +76,19 @@ export const formatOptions = (options) => {
     return value
   }
 }
+
+/**
+ * @param {Route} route
+ * @param {string} field
+ * @returns {Function}
+ */
+export const formatHighLight = (route, field) => {
+  return (value) => {
+    const query = String(route.query[field])
+    if (query) {
+      return String(value).replace(new RegExp(query, 'gi'), `<mark>${query}</mark>`)
+    }
+    return value
+  }
+}
+
