@@ -98,7 +98,7 @@ export const meta = (icon, label, title, tooltip = '', namespace = '', permissio
  * @param {string} color
  * @returns {Function}
  */
-export const menu = (icon, label, path, exact = false, tooltip = '', id = '', namespace = '', permission = 1, color = 'faded') => {
+export const menu = (icon, label, path, exact = false, tooltip = '', id = '', namespace = '', permission = 1, color = '') => {
   const identification = id || uniqid()
   return (to) => item(identification, to(path), label, icon, exact, tooltip, namespace, permission, color)
 }

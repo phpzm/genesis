@@ -86,9 +86,35 @@ export const formatHighLight = (route, field) => {
   return (value) => {
     const query = String(route.query[field])
     if (query) {
-      return String(value).replace(new RegExp(query, 'gi'), `<mark>${query}</mark>`)
+      return stripAccent(String(value)).replace(new RegExp(query, 'ig'), function (match) {
+        return `<mark>${match}</mark>`
+      })
     }
     return value
   }
 }
 
+/**
+ * @param string
+ * @returns {string}
+ */
+const stripAccent = (string) => {
+  const specials = [
+    {regex: /[\xC0-\xC6]/g, char: 'A'},
+    {regex: /[\xE0-\xE6]/g, char: 'a'},
+    {regex: /[\xC8-\xCB]/g, char: 'E'},
+    {regex: /[\xE8-\xEB]/g, char: 'e'},
+    {regex: /[\xCC-\xCF]/g, char: 'I'},
+    {regex: /[\xEC-\xEF]/g, char: 'i'},
+    {regex: /[\xD2-\xD6]/g, char: 'O'},
+    {regex: /[\xF2-\xF6]/g, char: 'o'},
+    {regex: /[\xD9-\xDC]/g, char: 'U'},
+    {regex: /[\xF9-\xFC]/g, char: 'u'},
+    {regex: /[\xD1]/g, char: 'N'},
+    {regex: /[\xF1]/g, char: 'n'}
+  ]
+  const reduce = (accumulate, item) => {
+    return accumulate.replace(item.regex, item.char)
+  }
+  return specials.reduce(reduce, string)
+}
