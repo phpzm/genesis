@@ -54,4 +54,7 @@ export const cancel = (requestId) => {
   loading(false)
 }
 
+/**
+ * @type {Axios}
+ */
 export default http
