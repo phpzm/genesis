@@ -3,6 +3,7 @@
     <div slot="component">
 
       <div v-show="editable" :class="{'has-error': problems.length}">
+
         <div ref="input" class="input full-width" :class="{'disabled': disabled}">
           <span v-if="!selected" class="field-placeholder">{{ placeholder }}</span>
           <span v-else :class="'selected ellipsis'">{{ selected }}</span>
@@ -14,6 +15,7 @@
           </div>
         </div>
       </div>
+
       <div v-show="!editable" class="html ellipsis" v-html="html"></div>
 
       <q-modal ref="modal" position="bottom" class="field-search-modal" :content-css="css">
