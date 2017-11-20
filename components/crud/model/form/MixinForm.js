@@ -22,6 +22,9 @@ export default {
       default () {
         return {
           create: (response) => {
+            if (!this.messages.create) {
+              return console.error('There is no prop `messages.create`')
+            }
             toast(wildcard(this.messages.create, this.$http.$body(response)))
             this.setAppModified(false)
           },
@@ -31,10 +34,16 @@ export default {
             // this.$refs.form.setRecord(this.data)
           },
           update: (response) => {
+            if (!this.messages.update) {
+              return console.error('There is no prop `messages.create`')
+            }
             toast(wildcard(this.messages.update, this.$http.$body(response)))
             this.setAppModified(false)
           },
           delete: (response) => {
+            if (!this.messages.delete) {
+              return console.error('There is no prop `messages.create`')
+            }
             undo(wildcard(this.messages.delete, this.$http.$body(response)), () => {
               // window.alert('Undo')
             })
@@ -68,8 +77,8 @@ export default {
       if (this.className) {
         classNames.push(this.className)
       }
-      if (this.$route.meta.name) {
-        classNames.push(this.$route.meta.name)
+      if (this.$route.name) {
+        classNames.push(String(this.$route.name).replace(/\./g, '_'))
       }
       return classNames
     }
@@ -78,16 +87,41 @@ export default {
     /**
      */
     renderElements () {
-      const map = item => {
-        return Object.assign({}, item.form, {
-          disabled: this.readonly ? true : item.form.disabled,
-          field: item.field,
-          component: item.form.component ? (this.component + '-' + item.form.component) : ''
-        })
+      this.fields = this.schemas.filter(this.filterFields).map(this.mapFields).sort(this.sortFields)
+    },
+    /**
+     * @param {Object} item
+     * @returns {boolean}
+     */
+    filterFields (item) {
+      return item.scopes.includes(this.scope)
+    },
+    /**
+     * @param {Object} item
+     * @returns {Object}
+     */
+    mapFields (item) {
+      return Object.assign({}, item.form, {
+        disabled: this.readonly ? true : item.form.disabled,
+        field: item.field,
+        component: item.form.component ? (this.component + '-' + item.form.component) : ''
+      })
+    },
+    /**
+     * @param {Object} a
+     * @param {Object} b
+     */
+    sortFields (a, b) {
+      if (!a.order || !b.order) {
+        return 0
       }
-      const filter = item => item.scopes.includes(this.scope)
-
-      this.fields = this.schemas.filter(filter).map(map)
+      if (a.order < b.order) {
+        return -1
+      }
+      if (a.order > b.order) {
+        return 1
+      }
+      return 0
     },
     /**
      * @param {Object} data

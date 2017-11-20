@@ -68,10 +68,46 @@ export const loading = (status = true, delay = 0, message = '') => {
  * @param {String} color
  * @param {String} bgColor
  */
-export const toast = (html, icon = 'done', timeout = 6000, color = '#ffffff', bgColor = '#515151') => {
+export const toast = (html, icon = 'done', timeout = 6000, color = '#ffffff', bgColor = 'rgba(50, 50, 50, 0.95)') => {
   Toast.create({
     html, icon, timeout, color, bgColor
   })
+}
+
+/**
+ * @param {String} type
+ * @param {String} html
+ */
+export const toastType = (type, html) => {
+  return Toast.create[type](html)
+}
+
+/**
+ * @param {String} html
+ */
+export const toastPositive = (html) => {
+  return toastType('positive', html)
+}
+
+/**
+ * @param {String} html
+ */
+export const toastNegative = (html) => {
+  return toastType('negative', html)
+}
+
+/**
+ * @param {String} html
+ */
+export const toastInfo = (html) => {
+  return toastType('info', html)
+}
+
+/**
+ * @param {String} html
+ */
+export const toastWarning = (html) => {
+  return toastType('warning', html)
 }
 
 /**

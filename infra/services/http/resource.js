@@ -38,9 +38,13 @@ export const url = (base, uri, parameters) => {
 
 /**
  * @param {string} path
+ * @param {Object} fixed
  * @returns {Function}
  */
-export const create = (path) => {
+export const create = (path, fixed = {}) => {
+  if (typeof fixed !== 'object') {
+    fixed = {}
+  }
   /**
    * @param {object} data
    * @param {string} uri
@@ -48,30 +52,38 @@ export const create = (path) => {
    * @param {object} config
    */
   return (data, uri, parameters, config) => {
-    return http.post(url(path, uri, parameters), data, config)
+    return http.post(url(path, uri, parameters), Object.assign({}, data, fixed), config)
   }
 }
 
 /**
  * @param {string} path
+ * @param {Object} fixed
  * @returns {Function}
  */
-export const read = (path) => {
+export const read = (path, fixed = {}) => {
+  if (typeof fixed !== 'object') {
+    fixed = {}
+  }
   /**
    * @param {string} uri
    * @param {object} parameters
    * @param {object} config
    */
   return (uri, parameters, config) => {
-    return http.get(url(path, uri, parameters), config)
+    return http.get(url(path, uri, Object.assign({}, parameters, fixed)), config)
   }
 }
 
 /**
  * @param {string} path
+ * @param {Object} fixed
  * @returns {Function}
  */
-export const update = (path) => {
+export const update = (path, fixed = {}) => {
+  if (typeof fixed !== 'object') {
+    fixed = {}
+  }
   /**
    * @param {string} id
    * @param {object} data
@@ -79,22 +91,26 @@ export const update = (path) => {
    * @param {object} config
    */
   return (id, data, parameters, config) => {
-    return http.put(url(path, id, parameters), data, config)
+    return http.put(url(path, id, parameters), Object.assign({}, data, fixed), config)
   }
 }
 
 /**
  * @param {string} path
+ * @param {Object} fixed
  * @returns {Function}
  */
-export const destroy = (path) => {
+export const destroy = (path, fixed = {}) => {
+  if (typeof fixed !== 'object') {
+    fixed = {}
+  }
   /**
    * @param {object} path
    * @param {string} id
    * @param {object} parameters
    */
   return (id, parameters, config) => {
-    return http.delete(url(path, id, parameters), config)
+    return http.delete(url(path, id, Object.assign({}, parameters, fixed)), config)
   }
 }
 
@@ -137,21 +153,27 @@ export const source = (api, value, label, more = {}) => {
 }
 
 /**
- * @param path
+ * @param {string} path
+ * @param {Object} fixed
  * @returns {Resource}
  */
-export const resource = (path) => {
-  return new Resource(path)
+export const resource = (path, fixed = {}) => {
+  return new Resource(path, fixed)
 }
 
 /**
+ * @type {Resource}
  */
 class Resource {
-  constructor (path) {
-    this.post = create(path)
-    this.get = read(path)
-    this.put = update(path)
-    this.patch = update(path)
-    this.delete = destroy(path)
+  /**
+   * @param {string} path
+   * @param {Object} fixed
+   */
+  constructor (path, fixed) {
+    this.post = create(path, fixed)
+    this.get = read(path, fixed)
+    this.put = update(path, fixed)
+    this.patch = update(path, fixed)
+    this.delete = destroy(path, fixed)
   }
 }

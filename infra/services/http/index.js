@@ -1,6 +1,5 @@
 import axios from 'axios'
 import canceler from 'axios-cancel'
-import { set } from 'lodash'
 import { Auth } from 'genesis'
 import { URL_API } from 'genesis/support'
 import { loading } from 'genesis/support/message'
@@ -35,7 +34,7 @@ export const install = () => {
  */
 export const setToken = token => {
   const configureToken = Auth.get('token')
-  set(http, 'defaults.headers.common.Authorization', configureToken(token))
+  configureToken(http, token)
 }
 
 /**

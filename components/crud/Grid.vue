@@ -2,6 +2,8 @@
 <template>
   <div class="app-crud-grid" :class="classNames">
 
+    <slot name="header"/>
+
     <slot v-if="top" name="top">
       <app-grid-toolbar v-bind="{handler, direction, page, pages, limit, total, paginate, buttons: buttons.top}"
                         @change-page="changePage" @change-limit="changeLimit"/>
@@ -19,6 +21,8 @@
       <app-grid-toolbar v-bind="{handler, direction, page, pages, limit, total, paginate, buttons: buttons.bottom}"
                         @change-page="changePage" @change-limit="changeLimit"/>
     </slot>
+
+    <slot name="footer"/>
 
     <slot v-if="floating" name="floating">
       <div class="fixed-bottom-right">

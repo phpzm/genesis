@@ -1,6 +1,7 @@
 <template>
   <div class="app-data-table" :style="config.styles">
     <q-data-table v-bind="{data, columns, config}" @refresh="refresh" @rowclick="rowclick">
+
       <div v-if="actions.length" slot="col-options" slot-scope="cell">
         <div class="app-data-table-options">
           <q-fab color="primary" icon="settings" :direction="direction">
@@ -11,6 +12,7 @@
           </q-fab>
         </div>
       </div>
+
       <div v-for="slot in slots" :slot="'col-' + slot.field" slot-scope="cell">
         <field-functional :component="slot.component" :on="on(slot, cell)" :props="props(slot, cell)"/>
       </div>

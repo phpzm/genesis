@@ -78,20 +78,39 @@ export const formatOptions = (options) => {
 }
 
 /**
- * @param {Route} route
- * @param {string} field
+ * @param {string} query
+ * @param {int} split
  * @returns {Function}
  */
-export const formatHighLight = (route, field) => {
+export const formatHighLight = (query, split = 0) => {
   return (value) => {
-    const query = String(route.query[field])
     if (query) {
-      return stripAccent(String(value)).replace(new RegExp(query, 'ig'), function (match) {
+      let string = String(value)
+      if (split && string.length > split) {
+        string = generateEllipsis(string, string.toLowerCase().indexOf(query.toLowerCase()))
+      }
+      return stripAccent(string).replace(new RegExp(query, 'ig'), function (match) {
         return `<mark>${match}</mark>`
       })
     }
     return value
   }
+}
+
+/**
+ * @param {string} string
+ * @param {int} start
+ * @returns {string}
+ */
+const generateEllipsis = (string, start) => {
+  if (start > 5) {
+    start = start - 5
+  }
+  string = string.substring(start)
+  if (start > 5) {
+    string = '... ' + string
+  }
+  return string
 }
 
 /**
