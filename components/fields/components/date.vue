@@ -75,7 +75,7 @@
        * @param {*} value
        */
       applyValue (value) {
-        if (!value) {
+        if (!value || value === '0000-00-00') {
           return
         }
         if (typeof value !== 'string') {
