@@ -59,6 +59,7 @@ export default {
         }
         query[key] = value
       })
+      query['page'] = 1
 
       this.browse(this.path, query)
     },
