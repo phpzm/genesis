@@ -8,8 +8,8 @@
     </slot>
 
     <hr v-if="top">
-    <slot name="body">
-      <app-form ref="form" v-bind="{tabs, tab, fields, data, readonly, change, watches, debug}"
+    <slot name="content">
+      <component :is="content" ref="form" v-bind="{tabs, tab, fields, data, readonly, change, watches, debug}"
                 @form~input="input" @form~valid="valid"/>
     </slot>
     <hr v-if="bottom">

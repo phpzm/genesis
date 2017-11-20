@@ -46,11 +46,17 @@ export const standard = {
   $all (all) {
     return this.$assign('all', all)
   },
-  $whenForm (scope, scopes) {
+  $when (type, scope, scopes) {
     const selected = scopes[scope] || {}
     const all = scopes.default || {}
-    this.$form(Object.assign({}, all, selected))
+    this[type](Object.assign({}, all, selected))
     return this
+  },
+  $whenForm (scope, scopes) {
+    return this.$when('$form', scope, scopes)
+  },
+  $whenGrid (scope, scopes) {
+    return this.$when('$grid', scope, scopes)
   },
   $assign (property, options) {
     this[property] = Object.assign({}, this[property], options)
