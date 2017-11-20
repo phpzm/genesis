@@ -93,7 +93,7 @@ export const factory = (path, namespace, grid, form, meta) => {
      */
     $create (options = {}) {
       const create = this.$meta(
-        2, 'add', 'Criar', 'Criar / ' + meta.label, 'Cria um novo registro no(a) ' + meta.title
+        2, 'add', 'Criar', `${meta.label} / Criar`, 'Cria um novo registro no(a) ' + meta.title
       )
       return Object.assign({}, create, options)
     },
@@ -103,7 +103,7 @@ export const factory = (path, namespace, grid, form, meta) => {
      */
     $view (options = {}) {
       const view = this.$meta(
-        1, 'search', 'Visualizar', 'Visualizar / ' + meta.label, 'Visualiza um registro do(a) ' + meta.title
+        1, 'search', 'Visualizar', `${meta.label} / Visualizar`, 'Visualiza um registro do(a) ' + meta.title
       )
       return Object.assign({}, view, options)
     },
@@ -112,8 +112,9 @@ export const factory = (path, namespace, grid, form, meta) => {
      * @returns {Object}
      */
     $edit (options = {}) {
+      // permission, icon, label, title, tooltip
       const edit = this.$meta(
-        3, 'edit', 'Editar', 'Editar  / ' + meta.label, 'Edita um novo registro do(a) ' + meta.title
+        3, 'edit', 'Editar', `${meta.label} / Editar`, 'Edita um novo registro do(a) ' + meta.title
       )
       return Object.assign({}, edit, options)
     }
