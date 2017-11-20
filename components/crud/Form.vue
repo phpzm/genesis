@@ -1,6 +1,8 @@
 <template>
   <div class="app-crud-grid" :class="classNames">
 
+    <slot name="header"/>
+
     <slot v-if="top" name="top">
       <app-button-bar :buttons="buttons.top" :handler="handler" :direction="direction" :record="data"/>
     </slot>
@@ -15,6 +17,8 @@
     <slot v-if="bottom" name="bottom">
       <app-button-bar :buttons="buttons.top" :handler="handler" :direction="direction" :record="data"/>
     </slot>
+
+    <slot name="footer"/>
 
     <slot v-if="floating" name="floating">
       <div class="fixed-bottom-right">
