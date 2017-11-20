@@ -73,6 +73,13 @@ export default {
     },
     max: {
       default: () => undefined
+    },
+    cleanable: {
+      type: Boolean,
+      default: () => true
+    },
+    cleaning: {
+      default: () => undefined
     }
   },
   computed: {

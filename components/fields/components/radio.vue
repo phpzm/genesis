@@ -4,6 +4,10 @@
       <div v-show="editable" class="q-radio-container" :class="{'has-error': problems.length}">
         <q-radio v-model="model" v-for="options in options" :disable="disabled"
                  :key="options.value" :val="options.value" :label="options.label" @input="updateValue(model)"/>
+        <div class="pull-right field-clear-wrapper" v-if="!disabled">
+          <q-button v-if="cleanable" v-bind="{small: true, round: true, color: 'negative', icon: 'clear'}"
+                      class="field-clear" @click="model = cleaning"/>
+        </div>
       </div>
       <div v-show="!editable" class="html" v-html="html"></div>
     </div>
@@ -60,6 +64,7 @@
 <style lang="stylus" rel="stylesheet/stylus">
   .field-radio
     .q-radio-container
+      position relative
       padding 7px 0 0 0
     .q-radio.q-option
       margin 0 10px 0 0
@@ -67,6 +72,14 @@
         margin-left 4px !important
         font-size 13px
         font-family Roboto
+    .field-clear-wrapper
+      position absolute
+      top 0
+      right 0
+      opacity 0
+      transition opacity .6s
+    &:hover .field-clear-wrapper
+      opacity 1
     .html
       height 38px
       color #515151

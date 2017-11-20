@@ -1,10 +1,14 @@
 <template>
   <field :class="classNames" v-bind="{id, inline, problems, label, validate, title, tooltip, editable, visible}">
     <div slot="component">
-      <div v-show="editable" :class="{'has-error': problems.length}">
+      <div v-show="editable" class="q-select-container" :class="{'has-error': problems.length}">
         <q-select ref="input" class="input full-width cursor-pointer" :class="{'disabled': disable}"
                   v-model="model" v-bind="{disable, options, multiple, chips, name, placeholder}"
                   @change="$emit('input', model)"/>
+        <div class="pull-right field-clear-wrapper" v-if="!disabled">
+          <q-button v-if="cleanable" v-bind="{small: true, round: true, color: 'negative', icon: 'clear'}"
+                    class="field-clear" @click="model = cleaning"/>
+        </div>
       </div>
       <div v-show="!editable" class="html ellipsis" v-html="html"></div>
     </div>
@@ -51,10 +55,6 @@
         default: () => false
       },
       separator: {
-        type: Boolean,
-        default: () => false
-      },
-      clearable: {
         type: Boolean,
         default: () => false
       },
@@ -125,6 +125,8 @@
   @import '~variables'
 
   .field-select
+    .q-select-container
+      position relative
     .q-if-control
       position absolute
       right 0
@@ -132,14 +134,20 @@
       background $primary
       height 37px
       width 30px
-
-  .field-select
     .q-if-disabled:before
       background none
     .q-select.q-if
       padding 6px 8px
     .has-error .q-picker-textfield
       background rgba(249, 125, 125, 0.2)
+    .field-clear-wrapper
+      position absolute
+      right 35px
+      top 4px
+      opacity 0
+      transition opacity .6s
+    &:hover .field-clear-wrapper
+      opacity 1
     .html
       height 36px
       color #515151
