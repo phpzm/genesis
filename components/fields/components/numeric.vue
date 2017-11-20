@@ -74,7 +74,7 @@
        * @param {Number} step
        */
       add (value, step) {
-        this.applyValue(value + step)
+        this.applyValue(Number(value || 0) + step)
         this.updateValue()
       },
       /**
@@ -82,7 +82,7 @@
        * @param {Number} step
        */
       remove (value, step) {
-        this.applyValue(value - step)
+        this.applyValue(Number(value || 0) - step)
         this.updateValue()
       }
     },
