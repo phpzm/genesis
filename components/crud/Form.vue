@@ -21,9 +21,7 @@
     <slot name="footer"/>
 
     <slot v-if="floating" name="floating">
-      <div class="fixed-bottom-right">
-        <app-button-bar :buttons="buttons.floating" :handler="handler" :record="data"/>
-      </div>
+      <app-button-bar v-bind="{floating: true, handler, buttons: buttons.floating}"/>
     </slot>
 
     <template v-if="debugging">
