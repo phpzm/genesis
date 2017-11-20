@@ -46,7 +46,7 @@ export const standard = {
   $all (all) {
     return this.$assign('all', all)
   },
-  $onForm (scope, scopes) {
+  $whenForm (scope, scopes) {
     const selected = scopes[scope] || {}
     const all = scopes.default || {}
     this.$form(Object.assign({}, all, selected))
