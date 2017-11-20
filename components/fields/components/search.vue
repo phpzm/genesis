@@ -9,7 +9,7 @@
           <div class="pull-right" style="margin: -10px -9px" v-if="!disabled">
             <app-button v-if="selected" v-bind="{small: true, round: true, color: 'negative', icon: 'clear'}"
                         class="clear" @click="clear"/>
-            <app-button v-bind="{small: true, raised: false, rotate: false, color: 'primary', icon: 'search'}"
+            <app-button v-bind="{small: true, raised: false, rotate: false, icon: 'search'}"
                         class="widget" @click="openWidget"/>
           </div>
         </div>
@@ -297,6 +297,8 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @import '~variables'
+
   .field-search
     position relative
     .input
@@ -314,6 +316,8 @@
           padding 0 15px
           box-shadow none
           overflow hidden
+          background $field-button-background
+          color $field-button-color
         i
           font-size 20px
         &.clear

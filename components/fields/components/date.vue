@@ -2,7 +2,7 @@
   <field :class="classNames" v-bind="{id, inline, problems, label, validate, title, tooltip, editable, visible}">
     <div slot="component">
       <div v-show="editable" class="component" :class="{'has-error': problems.length}">
-        <i class="material-icons bg-primary" :class="{'disabled': disabled}" @click="openWidget">&#xE878;</i>
+        <i class="material-icons" :class="{'disabled': disabled}" @click="openWidget">&#xE878;</i>
         <q-datetime ref="widget" v-model="widget"
                     v-bind="{type, monthNames, dayNames, format24h, okLabel, cancelLabel, clearLabel}"></q-datetime>
         <input ref="input" class="input full-width" autocomplete="off"
@@ -130,17 +130,20 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @import '~variables'
+
   .field-date
     .component
       position relative
       & > input
         height 37px
       & > .material-icons
+        background $field-button-background
+        color $field-button-color
         position absolute !important
         cursor pointer
         right 0
         top 0
-        color #ffffff
         padding 8px 4px 9px 5px
         font-size 20px
         z-index 10
