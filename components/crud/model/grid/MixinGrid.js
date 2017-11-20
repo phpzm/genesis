@@ -91,7 +91,7 @@ export default {
         classNames.push(this.className)
       }
       if (this.$route.name) {
-        classNames.push(this.$route.name)
+        classNames.push(String(this.$route.name).replace(/\./g, '_'))
       }
       if (this.filter.active) {
         classNames.push('--grid-filtering')
@@ -103,7 +103,7 @@ export default {
     /**
      */
     renderElements () {
-      this.fields = this.schemas.filter(this.filterColumns).map(this.mapColumns)
+      this.fields = this.schemas.filter(this.filterColumns).map(this.mapColumns).sort(this.sortColumns)
 
       if (this.buttons.middle.length) {
         let method = 'unshift'
@@ -132,6 +132,22 @@ export default {
      */
     filterColumns (item) {
       return item.scopes.includes(this.scope)
+    },
+    /**
+     * @param {Object} a
+     * @param {Object} b
+     */
+    sortColumns (a, b) {
+      if (!a.order || !b.order) {
+        return 0
+      }
+      if (a.order < b.order) {
+        return -1
+      }
+      if (a.order > b.order) {
+        return 1
+      }
+      return 0
     },
     /**
      * @returns {boolean}
