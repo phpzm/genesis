@@ -3,16 +3,21 @@
 
     <q-toolbar slot="header" v-bind="toolbar">
       <slot name="header">
-        <q-btn flat @click="toggleLeft">
-          <q-icon name="menu"></q-icon>
-        </q-btn>
 
-        <q-toolbar-title>
-          {{ AppName }}
-          <div slot="subtitle" class="hidden-medium">
-            {{ AppTooltip }} <span v-if="environment !== 'production'">{{ $q.version }}</span>
-          </div>
-        </q-toolbar-title>
+        <slot name="header-toggle">
+          <q-btn flat @click="toggleLeft">
+            <q-icon name="menu"></q-icon>
+          </q-btn>
+        </slot>
+
+        <slot name="header-title">
+          <q-toolbar-title>
+            {{ AppName }}
+            <div slot="subtitle" class="hidden-medium">
+              {{ AppTooltip }} <span v-if="dev">{{ $q.version }}</span>
+            </div>
+          </q-toolbar-title>
+        </slot>
 
         <slot name="header-content"></slot>
 
@@ -124,7 +129,7 @@
         return process.env.NODE_ENV
       },
       dev () {
-        return process.env.NODE_ENV !== 'production'
+        return process.env.DEV
       },
       classNames () {
         return ['layout-default', this.environment]
