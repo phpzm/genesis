@@ -11,7 +11,7 @@
     <hr v-if="top">
 
     <slot name="content">
-      <app-data-table ref="grid"
+      <component :is="content" ref="grid"
                       v-bind="{columns, data, debug, position, slots, styles, bodyStyle, actions: buttons.middle}"/>
     </slot>
 
