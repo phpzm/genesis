@@ -8,6 +8,9 @@ import { money, mask } from 'genesis/support/utils'
  * @return {string}
  */
 export const parseDate = (value, format = 'DD/MM/YYYY') => {
+  if (!String(value).substring(0, 10).match(/^\d{4}-\d{2}-\d{2}$/)) {
+    return ''
+  }
   const date = moment(value)
   if (!date.isValid()) {
     return ''
