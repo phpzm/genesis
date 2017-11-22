@@ -121,7 +121,7 @@ export default {
     },
     /**
      * @param {Object} item
-     * @returns {Array}
+     * @returns {Object}
      */
     mapColumns (item) {
       const assign = {
