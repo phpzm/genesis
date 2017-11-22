@@ -1,5 +1,5 @@
 <template>
-  <q-tooltip v-bind="{disable: disabled}">
+  <q-tooltip v-bind="{disable: disabled,  anchor, self, offset}">
     <slot/>
   </q-tooltip>
 </template>
@@ -15,6 +15,15 @@
       disable: {
         type: Boolean,
         default: () => false
+      },
+      anchor: {
+        default: () => undefined
+      },
+      self: {
+        default: () => undefined
+      },
+      offset: {
+        default: () => undefined
       }
     },
     data: () => ({

@@ -131,7 +131,8 @@
       position absolute
       right 0
       top -1px
-      background $primary
+      background $field-button-background
+      color $field-button-color
       height 37px
       width 30px
     .q-if-disabled:before

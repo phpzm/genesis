@@ -8,8 +8,8 @@
     </slot>
 
     <hr v-if="top">
-    <slot name="body">
-      <app-form ref="form" v-bind="{tabs, tab, fields, data, readonly, change, watches, debug}"
+    <slot name="content">
+      <component :is="content" ref="form" v-bind="{tabs, tab, fields, data, readonly, change, watches, debug}"
                 @form~input="input" @form~valid="valid"/>
     </slot>
     <hr v-if="bottom">
@@ -21,9 +21,7 @@
     <slot name="footer"/>
 
     <slot v-if="floating" name="floating">
-      <div class="fixed-bottom-right">
-        <app-button-bar :buttons="buttons.floating" :handler="handler" :record="data"/>
-      </div>
+      <app-button-bar v-bind="{floating: true, handler, buttons: buttons.floating}"/>
     </slot>
 
     <template v-if="debugging">

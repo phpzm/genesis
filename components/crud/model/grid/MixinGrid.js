@@ -73,6 +73,10 @@ export default {
     limiting: {
       type: Number,
       default: () => (25)
+    },
+    content: {
+      type: String,
+      default: () => ('app-data-table')
     }
   },
   data: () => ({

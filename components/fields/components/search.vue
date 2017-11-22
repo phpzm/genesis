@@ -3,17 +3,19 @@
     <div slot="component">
 
       <div v-show="editable" :class="{'has-error': problems.length}">
+
         <div ref="input" class="input full-width" :class="{'disabled': disabled}">
           <span v-if="!selected" class="field-placeholder">{{ placeholder }}</span>
           <span v-else :class="'selected ellipsis'">{{ selected }}</span>
           <div class="pull-right" style="margin: -10px -9px" v-if="!disabled">
             <app-button v-if="selected" v-bind="{small: true, round: true, color: 'negative', icon: 'clear'}"
                         class="clear" @click="clear"/>
-            <app-button v-bind="{small: true, raised: false, rotate: false, color: 'primary', icon: 'search'}"
+            <app-button v-bind="{small: true, raised: false, rotate: false, icon: 'search'}"
                         class="widget" @click="openWidget"/>
           </div>
         </div>
       </div>
+
       <div v-show="!editable" class="html ellipsis" v-html="html"></div>
 
       <q-modal ref="modal" position="bottom" class="field-search-modal" :content-css="css">
@@ -297,6 +299,8 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  @import '~variables'
+
   .field-search
     position relative
     .input
@@ -314,6 +318,8 @@
           padding 0 15px
           box-shadow none
           overflow hidden
+          background $field-button-background
+          color $field-button-color
         i
           font-size 20px
         &.clear
