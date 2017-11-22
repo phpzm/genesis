@@ -98,7 +98,7 @@ export default {
         return
       }
       const buttons = _actions
-        .filter(button => button.scopes.includes(this.scope))
+        .filter(button => button.scopes && button.scopes.includes(this.scope))
         .map(button => {
           if (typeof button.validate === 'function') {
             button.disabled = button.validate(this.record, this.schemas, this)
