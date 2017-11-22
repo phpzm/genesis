@@ -60,6 +60,4 @@
     padding 16px 0 0 0
     hr
       margin 10px 0
-    .fixed-bottom-right
-      margin 5px
 </style>

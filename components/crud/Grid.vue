@@ -79,6 +79,4 @@
           color white !important
     hr
       margin 10px 0
-    .fixed-bottom-right
-      margin 5px
 </style>
