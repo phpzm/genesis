@@ -27,8 +27,8 @@ export const field = (field, label, component = 'text', scopes = []) => {
  * @param {string} path
  * @param {string} id
  * @param {Array} schemas
- * @param {Array} filters
- * @param {Array} actions
+ * @param {Array|Function} filters
+ * @param {Array|Function} actions
  * @param {Object} options
  * @returns {Object}
  */
