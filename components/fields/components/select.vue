@@ -11,7 +11,7 @@
                   @change="$emit('input', model)"/>
         <div class="pull-right field-clear-wrapper" v-if="!disabled">
           <q-button v-if="cleanable" v-bind="{small: true, round: true, color: 'negative', icon: 'clear'}"
-                    class="field-clear" @click="model = cleaning"/>
+                    class="field-clear" @click="clearValue"/>
         </div>
       </div>
 
@@ -97,6 +97,9 @@
       }
     },
     methods: {
+      /**
+       * @param {*} value
+       */
       applyValue (value) {
         if (!this.multiple) {
           this.model = value
@@ -105,6 +108,12 @@
         if (Array.isArray(value)) {
           this.model = value
         }
+      },
+      /**
+       */
+      clearValue () {
+        this.model = this.cleaning
+        this.updateValue(this.model)
       }
     },
     watch: {
