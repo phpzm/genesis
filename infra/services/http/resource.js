@@ -52,7 +52,7 @@ export const create = (path, fixed = {}) => {
    * @param {object} config
    */
   return (data, uri, parameters, config) => {
-    return http.post(url(path, uri, parameters), Object.assign({}, data, fixed), config)
+    return http.post(url(path, uri, Object.assign({}, parameters, fixed)), data, config)
   }
 }
 
@@ -91,7 +91,7 @@ export const update = (path, fixed = {}) => {
    * @param {object} config
    */
   return (id, data, parameters, config) => {
-    return http.put(url(path, id, parameters), Object.assign({}, data, fixed), config)
+    return http.put(url(path, id, Object.assign({}, parameters, fixed)), data, config)
   }
 }
 

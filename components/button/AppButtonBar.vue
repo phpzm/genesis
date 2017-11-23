@@ -3,10 +3,11 @@
     <template v-if="!floating || buttons.length === 1">
       <q-button v-if="permissionCheck(button, record)" v-for="button in buttons" :key="button.id" v-bind="button"
                 @click="handler(button)" class="button-default">
-        <app-tooltip :disable="!button.tooltip">{{ button.tooltip }}</app-tooltip>
+        <app-tooltip :disable="!button.tooltip" :anchor="button.anchor" :self="button.self"
+                     :offset="button.offset">{{ button.tooltip }}</app-tooltip>
       </q-button>
     </template>
-    <template v-else>
+    <template v-else-if="buttons.length > 0">
       <q-fab color="primary" icon="add" direction="up">
         <q-fab-action v-if="permissionCheck(button, record)" v-for="button in buttons" :key="button.id"
                       @click="handler(button)" :color="button.color" :icon="button.icon" class="rotate">
@@ -61,6 +62,8 @@
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .app-button-bar
+    &.fixed-bottom-right
+      margin 7px 17px
     button.button-default
       margin 0 5px
     button.button-default:first-child

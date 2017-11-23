@@ -2,14 +2,19 @@
   <field :class="classNames" v-bind="{id, inline, problems, label, validate, title, tooltip, editable, visible}">
     <div slot="component">
       <div v-show="editable" class="q-select-container" :class="{'has-error': problems.length}">
+
+        <input v-if="model === undefined && placeholder" :placeholder="placeholder" class="field-placeholder" readonly/>
+
         <q-select ref="input" class="input full-width cursor-pointer" :class="{'disabled': disable}"
-                  v-model="model" v-bind="{disable, options, multiple, chips, name, placeholder}"
+                  v-model="model"
+                  v-bind="{name, disable, options, multiple, radio, toggle, filter, separator, chips}"
                   @change="$emit('input', model)"/>
         <div class="pull-right field-clear-wrapper" v-if="!disabled">
           <q-button v-if="cleanable" v-bind="{small: true, round: true, color: 'negative', icon: 'clear'}"
-                    class="field-clear" @click="model = cleaning"/>
+                    class="field-clear" @click="clearValue"/>
         </div>
       </div>
+
       <div v-show="!editable" class="html ellipsis" v-html="html"></div>
     </div>
   </field>
@@ -92,6 +97,9 @@
       }
     },
     methods: {
+      /**
+       * @param {*} value
+       */
       applyValue (value) {
         if (!this.multiple) {
           this.model = value
@@ -100,6 +108,12 @@
         if (Array.isArray(value)) {
           this.model = value
         }
+      },
+      /**
+       */
+      clearValue () {
+        this.model = this.cleaning
+        this.updateValue(this.model)
       }
     },
     watch: {
@@ -125,6 +139,15 @@
   @import '~variables'
 
   .field-select
+    .field-placeholder
+      font-family Roboto
+      font-size 13px
+      border none
+      background transparent
+      position absolute
+      z-index 10
+      top 10px
+      left 8px
     .q-select-container
       position relative
     .q-if-control

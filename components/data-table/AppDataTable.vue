@@ -13,9 +13,9 @@
         </div>
       </div>
 
-      <div v-for="slot in slots" :slot="'col-' + slot.field" slot-scope="cell">
+      <template v-for="slot in slots" :slot="'col-' + slot.field" slot-scope="cell">
         <field-functional :component="slot.component" :on="on(slot, cell)" :props="props(slot, cell)"/>
-      </div>
+      </template>
     </q-data-table>
   </div>
 </template>

@@ -1,5 +1,6 @@
 import { get, set } from 'lodash'
 import { uniqid } from 'genesis/support/utils'
+import router from 'genesis/infra/router'
 
 /**
  * @param {string} path
@@ -11,20 +12,20 @@ const browse = (path, query = {}, changer = '~') => {
   if (query === false) {
     query = {}
   }
-
+  const route = router.currentRoute
   if (query !== undefined) {
-    query = Object.assign({}, this.$route.query, query)
+    query = Object.assign({}, route.query, query)
   }
   if (query === undefined) {
     query = {}
   }
-  if (path === this.$route.path) {
+  if (path === route.path) {
     query[changer] = uniqid()
   }
   if (remove) {
     delete query[changer]
   }
-  window.setTimeout(() => this.$router.push({path, query}), 100)
+  window.setTimeout(() => router.push({path, query}), 100)
 }
 
 const genesis = {

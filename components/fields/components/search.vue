@@ -124,6 +124,16 @@
         type: String,
         default: () => ('')
       },
+      uri: {
+        type: String,
+        default: () => ('')
+      },
+      config: {
+        type: Object,
+        default: () => ({
+          noLoading: true
+        })
+      },
       register: {
         type: Boolean,
         default: () => (false)
@@ -193,7 +203,7 @@
        * @param {string} term
        * @param {boolean} reset
        */
-      searchData (term, reset) {
+      searchData (term, reset = false) {
         let parameters = this.parameters(term, this.remote, this.filters)
         if (reset) {
           this.pagination.page = 1
@@ -212,7 +222,7 @@
 
         this.remote
           .service
-          .get('', configure(this.pagination.page, this.pagination.size, filters), {})
+          .get(this.uri, configure(this.pagination.page, this.pagination.size, filters), this.config)
           .then((response) => (this.searchParser(response, done)))
           .catch(() => (done([])))
       },

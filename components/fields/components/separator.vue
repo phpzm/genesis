@@ -28,5 +28,5 @@
     small
       color #9f9f9f
       display block
-      padding 10px 0
+      padding 0 0 5px 0
 </style>

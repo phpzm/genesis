@@ -121,11 +121,13 @@ export default {
     },
     /**
      * @param {Object} item
-     * @returns {Array}
+     * @param {Number} index
+     * @returns {Object}
      */
-    mapColumns (item) {
+    mapColumns (item, index) {
       const assign = {
         field: item.grid.field,
+        order: item.grid.order || index,
         width: typeof item.grid.width === 'number' ? item.grid.width + this.unity : item.grid.width
       }
       return Object.assign({}, item.grid, assign)
@@ -142,9 +144,6 @@ export default {
      * @param {Object} b
      */
     sortColumns (a, b) {
-      if (!a.order || !b.order) {
-        return 0
-      }
       if (a.order < b.order) {
         return -1
       }

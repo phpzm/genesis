@@ -6,7 +6,7 @@
                  :key="options.value" :val="options.value" :label="options.label" @input="updateValue(model)"/>
         <div class="pull-right field-clear-wrapper" v-if="!disabled">
           <q-button v-if="cleanable" v-bind="{small: true, round: true, color: 'negative', icon: 'clear'}"
-                      class="field-clear" @click="model = cleaning"/>
+                      class="field-clear" @click="clearValue"/>
         </div>
       </div>
       <div v-show="!editable" class="html" v-html="html"></div>
@@ -48,6 +48,12 @@
           return
         }
         this.model = value
+      },
+      /**
+       */
+      clearValue () {
+        this.model = this.cleaning
+        this.updateValue(this.model)
       }
     },
     watch: {
