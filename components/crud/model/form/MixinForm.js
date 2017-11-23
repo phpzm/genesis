@@ -102,11 +102,13 @@ export default {
     },
     /**
      * @param {Object} item
+     * @param {Number} index
      * @returns {Object}
      */
-    mapFields (item) {
+    mapFields (item, index) {
       return Object.assign({}, item.form, {
         disabled: this.readonly ? true : item.form.disabled,
+        order: item.form.order || index,
         field: item.field,
         component: item.form.component ? (this.component + '-' + item.form.component) : ''
       })
@@ -116,9 +118,6 @@ export default {
      * @param {Object} b
      */
     sortFields (a, b) {
-      if (!a.order || !b.order) {
-        return 0
-      }
       if (a.order < b.order) {
         return -1
       }
