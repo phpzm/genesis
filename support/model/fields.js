@@ -112,9 +112,7 @@ export const standard = {
   },
   $comma (key) {
     this.grid.format = (value) => {
-      let commas = []
-      value.find(c => { commas.push(c[key]) })
-      return commas.join(', ')
+      return value.map(c => c[key]).join(', ')
     }
     return this
   },
