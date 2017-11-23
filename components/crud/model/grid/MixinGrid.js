@@ -135,7 +135,7 @@ export default {
      * @returns {Object}
      */
     filterColumns (item) {
-      return item.scopes.includes(this.scope)
+      return item.scopes && item.scopes.includes(this.scope)
     },
     /**
      * @param {Object} a
