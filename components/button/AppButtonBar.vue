@@ -7,7 +7,7 @@
                      :offset="button.offset">{{ button.tooltip }}</app-tooltip>
       </q-button>
     </template>
-    <template v-else>
+    <template v-else-if="buttons.length > 0">
       <q-fab color="primary" icon="add" direction="up">
         <q-fab-action v-if="permissionCheck(button, record)" v-for="button in buttons" :key="button.id"
                       @click="handler(button)" :color="button.color" :icon="button.icon" class="rotate">
