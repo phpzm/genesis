@@ -9,6 +9,8 @@ export const APP_NAME = env.APP.NAME
 
 export const APP_USER = env.APP.USER
 
+export const APP_PERMISSIONS = env.APP.PERMISSIONS
+
 export const APP_TOKEN = env.APP.TOKEN
 
 export const APP_REMEMBER = env.APP.REMEMBER
