@@ -1,37 +1,11 @@
 {
-  "_from": "github:BlackMix/genesis",
-  "_id": "genesis@0.1.3",
-  "_inBundle": false,
-  "_integrity": "sha1-xp69fh87sFMDsnIczB2/eSX1haw=",
-  "_location": "/genesis",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "git",
-    "raw": "BlackMix/genesis",
-    "rawSpec": "BlackMix/genesis",
-    "saveSpec": "github:BlackMix/genesis",
-    "fetchSpec": null,
-    "gitCommittish": "master"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "github:BlackMix/genesis#031140cb1ff9701883b6a58426a62a06babf0fba",
-  "_spec": "BlackMix/genesis",
-  "_where": "C:\\WEB\\client",
-  "author": {
-    "name": "William Correa",
-    "email": "wilcorrea@gmail.com"
-  },
-  "bundleDependencies": false,
-  "deprecated": false,
-  "description": "RAD dashboard tools using Quasar",
-  "license": "MIT",
-  "main": "index.js",
   "name": "genesis",
+  "version": "0.1.3",
+  "description": "RAD dashboard tools using Quasar",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.1.3"
+  "author": "William Correa <wilcorrea@gmail.com>",
+  "license": "MIT"
 }
