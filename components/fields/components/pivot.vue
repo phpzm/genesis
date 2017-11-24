@@ -164,6 +164,7 @@
         position absolute
         z-index 10
         margin-top 10px
+        margin-left 10px
       .input
         height auto
       .q-if-control
