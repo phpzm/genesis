@@ -110,6 +110,12 @@ export const standard = {
     }
     return this
   },
+  $comma (key) {
+    this.grid.format = (value) => {
+      return value.map(c => c[key]).join(', ')
+    }
+    return this
+  },
   $checkbox () {
     this.form.component = 'checkbox'
     this.grid.format = formatBoolean
