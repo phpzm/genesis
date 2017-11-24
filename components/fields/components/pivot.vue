@@ -3,7 +3,7 @@
     <div slot="component">
       <div v-show="editable" :class="{'has-error': problems.length}">
         <q-select ref="input" class="input full-width" :class="{'disabled': disable}"
-                  v-model="model" multiple chips v-bind="{id, name, placeholder, disable, options: data}"
+                  v-model="model" v-bind="{id, name, placeholder, filter, chips, multiple, disable, options: data}"
                   @change="triggerUpdateValue(model)"></q-select>
         <div class="input-bar"></div>
       </div>
@@ -25,6 +25,18 @@
     props: {
       options: {
         default: () => ({})
+      },
+      filter: {
+        type: Boolean,
+        default: () => false
+      },
+      chips: {
+        type: Boolean,
+        default: () => false
+      },
+      multiple: {
+        type: Boolean,
+        default: () => false
       }
     },
     data: () => ({

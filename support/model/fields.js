@@ -183,18 +183,22 @@ export const standard = {
     }
     return this
   },
-  $select (options = [], multiple = false) {
+  $select (options = [], multiple = false, filter = false) {
     this.form.component = 'select'
     this.form.placeholder = '.:. Selecione uma opção .:.'
     this.form.multiple = multiple
     this.form.options = options
     this.form.chips = true
+    this.form.filter = filter
     this.grid.format = formatOptions(options)
     return this
   },
-  $pivot (options = {}) {
+  $pivot (options = {}, multiple = true, filter = false) {
     this.form.component = 'pivot'
     this.form.options = options
+    this.form.multiple = multiple
+    this.form.chips = true
+    this.form.filter = filter
     return this
   },
   $separator () {
