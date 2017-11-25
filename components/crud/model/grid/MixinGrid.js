@@ -48,6 +48,21 @@ export default {
       type: Boolean,
       default: () => true
     },
+    toolbar: {
+      type: Object,
+      default: () => ({
+        pagination: {
+          top: {
+            show: true,
+            style: 'top-navigation'
+          },
+          bottom: {
+            show: true,
+            style: 'bottom-navigation'
+          }
+        }
+      })
+    },
     unity: {
       type: String,
       default: () => 'vw'

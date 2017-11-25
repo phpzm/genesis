@@ -5,8 +5,9 @@
     <slot name="header"/>
 
     <slot v-if="top" name="top">
-      <app-grid-toolbar v-bind="{handler, direction, page, pages, limit, total, paginate, buttons: buttons.top}"
-                        @change-page="changePage" @change-limit="changeLimit"/>
+      <app-grid-toolbar
+              v-bind="{handler, direction, page, pages, limit, total, paginate, buttons: buttons.top, toolbar: toolbar.pagination.top}"
+              @change-page="changePage" @change-limit="changeLimit" :class='toolbar.pagination.top.style'/>
     </slot>
     <hr v-if="top">
 
@@ -18,8 +19,9 @@
     <hr v-if="bottom">
 
     <slot v-if="bottom" name="bottom">
-      <app-grid-toolbar v-bind="{handler, direction, page, pages, limit, total, paginate, buttons: buttons.bottom}"
-                        @change-page="changePage" @change-limit="changeLimit"/>
+      <app-grid-toolbar
+              v-bind="{handler, direction, page, pages, limit, total, paginate, buttons: buttons.bottom, toolbar: toolbar.pagination.bottom}"
+              @change-page="changePage" @change-limit="changeLimit" :class='toolbar.pagination.bottom.style'/>
     </slot>
 
     <slot name="footer"/>
