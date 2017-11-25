@@ -87,7 +87,7 @@
         type: Object,
         default: () => ({
           show: false,
-          style: ''
+          className: ''
         })
       }
     },

@@ -54,11 +54,11 @@ export default {
         pagination: {
           top: {
             show: true,
-            style: 'top-navigation'
+            className: 'top-navigation'
           },
           bottom: {
             show: true,
-            style: 'bottom-navigation'
+            className: 'bottom-navigation'
           }
         }
       })
