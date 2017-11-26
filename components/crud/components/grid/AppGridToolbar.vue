@@ -13,7 +13,7 @@
         <div v-else class="counter">Exibindo {{ counter.end }} registros</div>
       </div>
     </template>
-    <div :class="['field',  paginate ? 'has-40' : 'has-100']">
+    <div :class="['field',  toolbar.show ? 'has-40' : 'has-100']">
       <app-button-bar v-bind="{buttons, handler, direction}"/>
     </div>
   </div>
