@@ -2,17 +2,17 @@
 <template>
   <div class="form app-grid-toolbar">
     <template v-if="paginate">
-      <div v-if="toolbar.show"
-            :class="['field',  toolbar.show ? toolbar.elementsPaginate.pagination.className : 'has-25 xs-70']"
+      <div v-if="toolbar.elementsPaginate.pagination.show"
+            :class="['field', toolbar.elementsPaginate.pagination.className ]"
            class="app-grid-pagination">
         <q-pagination v-model="pagination" v-bind="{max}" @input="emitPagination(pagination)"/>
       </div>
-      <div v-if="toolbar.show"
-            :class="['field',  toolbar.show ? toolbar.elementsPaginate.select.className : 'has-15 xs-30']">
+      <div v-if="toolbar.elementsPaginate.select.show"
+            :class="['field', toolbar.elementsPaginate.select.className ]">
         <q-select v-model="select" v-bind="{options}" @input="emitSelect(select)"></q-select>
       </div>
-      <div v-if="toolbar.show"
-            :class="['field',  toolbar.show ? toolbar.elementsPaginate.info.className : 'has-20 hidden-small']"
+      <div v-if="toolbar.elementsPaginate.info.show"
+            :class="['field', toolbar.elementsPaginate.info.className ]"
            class="app-grid-info">
         <div v-if="counter.total">{{ counter.start }} - {{ counter.end }} de {{ counter.total }}</div>
         <div v-else class="counter">Exibindo {{ counter.end }} registros</div>
