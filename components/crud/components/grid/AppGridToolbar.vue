@@ -92,7 +92,21 @@
         type: Object,
         default: () => ({
           show: false,
-          className: ''
+          className: 'top-navigation',
+          elementsPaginate: {
+            pagination: {
+              show: true,
+              className: 'has-25 xs-70'
+            },
+            select: {
+              show: true,
+              className: 'has-15 xs-30'
+            },
+            info: {
+              show: true,
+              className: 'has-15 xs-30'
+            }
+          }
         })
       }
     },

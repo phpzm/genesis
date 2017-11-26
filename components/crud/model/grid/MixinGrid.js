@@ -53,12 +53,40 @@ export default {
       default: () => ({
         pagination: {
           top: {
-            show: true,
-            className: 'top-navigation'
+            show: false,
+            className: 'top-navigation',
+            elementsPaginate: {
+              pagination: {
+                show: true,
+                className: 'has-25 xs-70'
+              },
+              select: {
+                show: true,
+                className: 'has-15 xs-30'
+              },
+              info: {
+                show: true,
+                className: 'has-15 xs-30'
+              }
+            }
           },
           bottom: {
             show: true,
-            className: 'bottom-navigation'
+            className: 'bottom-navigation',
+            elementsPaginate: {
+              pagination: {
+                show: true,
+                className: 'has-25 xs-70'
+              },
+              select: {
+                show: true,
+                className: 'has-15 xs-30'
+              },
+              info: {
+                show: true,
+                className: 'has-20 hidden-small'
+              }
+            }
           }
         }
       })
