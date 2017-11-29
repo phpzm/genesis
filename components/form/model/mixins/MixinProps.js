@@ -8,6 +8,14 @@ export default {
       type: String,
       default: () => ''
     },
+    steps: {
+      type: Array,
+      default: () => ([])
+    },
+    step: {
+      type: String,
+      default: () => ''
+    },
     fields: {
       type: Array,
       default: () => ([])

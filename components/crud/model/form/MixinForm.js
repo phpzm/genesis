@@ -60,6 +60,14 @@ export default {
       type: String,
       default: () => ''
     },
+    steps: {
+      type: Array,
+      default: () => ([])
+    },
+    step: {
+      type: String,
+      default: () => ''
+    },
     change: {
       type: Function
     },

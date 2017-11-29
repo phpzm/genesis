@@ -9,7 +9,7 @@
 
     <hr v-if="top">
     <slot name="content">
-      <component :is="content" ref="form" v-bind="{tabs, tab, fields, data, readonly, change, watches, debug}"
+      <component :is="content" ref="form" v-bind="{tabs, tab, steps, step, fields, data, readonly, change, watches, debug}"
                 @form~input="input" @form~valid="valid"/>
     </slot>
     <hr v-if="bottom">

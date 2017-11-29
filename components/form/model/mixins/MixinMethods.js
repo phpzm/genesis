@@ -58,6 +58,11 @@ export default {
           components[tab.name] = this.fields.filter(field => field.tab === tab.name).reduce(arrayToObject, {})
         })
       }
+      if (this.steps.length) {
+        this.steps.forEach(step => {
+          components[step.name] = this.fields.filter(field => field.step === step.name).reduce(arrayToObject, {})
+        })
+      }
       this.components = components
     },
     /**

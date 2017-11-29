@@ -4,6 +4,7 @@ export default {
     schemas: {},
     record: {},
     tabSeletecd: '',
+    currentStep: '',
     modified: false
   })
 }
