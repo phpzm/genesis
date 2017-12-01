@@ -185,13 +185,13 @@ export default {
     if (this.scopes[this.scope]) {
       this.readonly = this.scopes[this.scope].readonly
     }
-    this.renderAll()
     if (this.tabs.length) {
       this.$g.emit('app-crud-enviroment', 'tabs')
     }
     if (this.steps.length) {
       this.$g.emit('app-crud-enviroment', 'steps')
     }
+    this.renderAll()
   },
   mounted () {
     if (this.id && this.$route.params[this.id]) {
