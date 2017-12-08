@@ -2,11 +2,11 @@
   <field :class="classNames" v-bind="{id, inline, problems, label, validate, title, tooltip, editable, visible}">
     <div slot="component">
       <div v-show="editable" class="color-wrapper grid" :class="{'has-error': problems.length}">
-        <div class="color" :style="{'background': model.hex}"></div>
+        <div class="color" :style="{'background': hex}"></div>
         <q-btn color="primary" class="color-button">
           <q-icon name="search"></q-icon>
           <q-popover ref="popover">
-            <sketch :value="model" @input="updateValue"></sketch>
+            <sketch :value="hex" @input="updateValue"></sketch>
           </q-popover>
         </q-btn>
       </div>
@@ -29,20 +29,28 @@
     },
     name: 'field-color',
     data: () => ({
-      model: {
-        hex: '#ffffff'
-      }
+      hex: ''
     }),
+    props: {
+      color: {
+        type: String,
+        default: '#FFFFFF'
+      }
+    },
     methods: {
       updateValue (color) {
-        this.model.hex = color.hex
-        this.$emit('input', color.hex)
+        this.hex = color
+        this.$emit('input', color)
       }
     },
     watch: {
       value (color) {
-        this.model.hex = color
+        this.hex = color
       }
+    },
+    created () {
+      this.hex = this.color
+      this.updateValue(this.color)
     }
   }
 </script>
