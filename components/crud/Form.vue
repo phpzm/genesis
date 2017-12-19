@@ -15,7 +15,7 @@
     <hr v-if="bottom">
 
     <slot v-if="bottom" name="bottom">
-      <app-button-bar :buttons="buttons.top" :handler="handler" :direction="direction" :record="data"/>
+      <app-button-bar :buttons="buttons.bottom" :handler="handler" :direction="direction" :record="data"/>
     </slot>
 
     <slot name="footer"/>
@@ -34,8 +34,12 @@
 
 <script type="text/javascript">
   import AppForm from 'genesis/components/form/AppForm.vue'
+  import AppWizard from 'genesis/components/form/AppWizard.vue'
+  import AppFormTabs from 'genesis/components/form/AppFormTabs.vue'
   import AppButtonBar from 'genesis/components/button/AppButtonBar.vue'
   import MixinNavigation from 'genesis/components/@mixins/MixinNavigation'
+  import MixinNavigationWizard from 'genesis/components/@mixins/MixinNavigationWizard'
+  import MixinNavigationTabs from 'genesis/components/@mixins/MixinNavigationTabs'
   import { MixinComputed, MixinData, MixinMethods, MixinProps } from './model'
   import { MixinForm } from './model/form'
 
@@ -45,11 +49,18 @@
    */
   const AppCrudForm = {
     mixins: [
-      MixinComputed, MixinData, MixinMethods, MixinProps, MixinNavigation, MixinForm
+      MixinComputed,
+      MixinData,
+      MixinMethods,
+      MixinProps,
+      MixinNavigation,
+      MixinNavigationWizard,
+      MixinNavigationTabs,
+      MixinForm
     ],
     name: 'app-crud-form',
     components: {
-      AppForm, AppButtonBar
+      AppForm, AppFormTabs, AppWizard, AppButtonBar
     }
   }
   export default AppCrudForm
