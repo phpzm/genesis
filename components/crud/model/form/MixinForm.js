@@ -60,6 +60,14 @@ export default {
       type: String,
       default: () => ''
     },
+    steps: {
+      type: Array,
+      default: () => ([])
+    },
+    step: {
+      type: String,
+      default: () => ''
+    },
     change: {
       type: Function
     },
@@ -176,6 +184,12 @@ export default {
   created () {
     if (this.scopes[this.scope]) {
       this.readonly = this.scopes[this.scope].readonly
+    }
+    if (this.tabs.length) {
+      this.$g.emit('app-crud-enviroment', 'tabs')
+    }
+    if (this.steps.length) {
+      this.$g.emit('app-crud-enviroment', 'steps')
     }
     this.renderAll()
   },

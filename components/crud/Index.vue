@@ -19,6 +19,17 @@
       styles: {
         default: () => ({})
       }
+    },
+    methods: {
+      enviroment () {
+        console.log('~> arguments', arguments)
+      }
+    },
+    created () {
+      this.$g.on('app-crud-enviroment', this.enviroment())
+    },
+    destroyed () {
+      this.$g.off('app-crud-enviroment')
     }
   }
 </script>

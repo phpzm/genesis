@@ -21,7 +21,7 @@
 
         <slot name="header-content"></slot>
 
-        <q-btn flat @click="">
+        <q-btn flat @click="" v-if="getDashboardOptions === !undefined">
           <q-icon name="more_vert"></q-icon>
           <q-popover ref="popover" class="q-popover-menu">
             <q-list item-separator highlight link>

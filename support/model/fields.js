@@ -70,6 +70,10 @@ export const standard = {
     this.form.tab = name
     return this
   },
+  $step (name) {
+    this.form.step = name
+    return this
+  },
   $disabled () {
     this.form.disabled = true
     return this
