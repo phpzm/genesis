@@ -22,10 +22,10 @@
 </template>
 
 <script type="text/javascript">
-  import appWizard from './AppForm'
+  import appForm from './AppForm'
   export default {
     name: 'app-wizard',
-    extends: appWizard,
+    extends: appForm,
     created () {
       this.currentStep = this.step
       if (!this.currentStep) {
