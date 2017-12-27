@@ -2,15 +2,24 @@
   <field :class="classNames" v-bind="{id, inline, problems, label, validate, title, tooltip, editable, visible}">
     <div slot="component">
       <div v-show="editable" :class="{'component': true, 'has-error': problems.length}">
-        <i class="material-icons" @click="openWidget">access_time</i>
-        <q-datetime ref="widget" v-model="widget" type="time" ok-label="Ok" cancel-label="Cancelar"
-                    clear-label="Limpar"></q-datetime>
-        <input ref="input" class="input full-width" autocomplete="off"
-               v-mask="pattern"
-               v-model="model" v-bind="{id, name, placeholder, maxlength, disabled}"
-               @keypress="keypress" @keyup="keyup" @blur="blur" @focus="focus" @keydown.enter.stop.prevent="enter"
-               @input="updateValue($event.target.value)"/>
-        <div class="input-bar"></div>
+        <template v-if="!embed">
+          <i class="material-icons" @click="openWidget">access_time</i>
+          <q-datetime ref="widget" v-model="widget" type="time" ok-label="Ok" cancel-label="Cancelar" v-bind="bind"
+                      clear-label="Limpar"></q-datetime>
+          <input ref="input" class="input full-width" autocomplete="off"
+                 v-mask="pattern"
+                 v-model="model" v-bind="{id, name, placeholder, maxlength, disabled}"
+                 @keypress="keypress" @keyup="keyup" @blur="blur" @focus="focus" @keydown.enter.stop.prevent="enter"
+                 @input="updateValue($event.target.value)"/>
+          <div class="input-bar"></div>
+        </template>
+
+        <template v-else>
+          <div class="row justify-center">
+            <q-inline-datetime v-model="widget" type="time" v-bind="bind"/>
+          </div>
+        </template>
+
       </div>
       <div v-show="!editable" class="html" v-html="html"></div>
     </div>
@@ -28,9 +37,35 @@
     components: {
       Field
     },
+    props: {
+      embed: {
+        type: Boolean,
+        default: false
+      },
+      format24h: {
+        type: Boolean,
+        default: () => true
+      },
+      min: {
+        type: [String, Number]
+      },
+      max: {
+        type: [String, Number]
+      }
+    },
     computed: {
       html () {
         return this.model
+      },
+      bind () {
+        const {format24h} = this
+
+        let min, max
+
+        min = this.min ? moment(mask(this.pattern, String(this.min)), 'HH:mm').format() : ''
+        max = this.max ? moment(mask(this.pattern, String(this.max)), 'HH:mm').format() : ''
+
+        return {min, max, format24h}
       }
     },
     data: () => ({

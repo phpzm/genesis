@@ -2,15 +2,35 @@
   <field :class="classNames" v-bind="{id, inline, problems, label, validate, title, tooltip, editable, visible}">
     <div slot="component">
       <div v-show="editable" class="component" :class="{'has-error': problems.length}">
-        <i class="material-icons" :class="{'disabled': disabled}" @click="openWidget">&#xE878;</i>
-        <q-datetime ref="widget" v-model="widget"
-                    v-bind="{type, monthNames, dayNames, format24h, okLabel, cancelLabel, clearLabel}"></q-datetime>
-        <input ref="input" class="input full-width" autocomplete="off"
-               v-mask="pattern"
-               v-model="model" v-bind="{id, name, placeholder, maxlength, disabled}"
-               @keypress="keypress" @keyup="keyup" @blur="blur" @focus="focus" @keydown.enter.stop.prevent="enter"
-               @input="updateValue($event.target.value)"/>
-        <div class="input-bar"></div>
+        <template v-if="!embed">
+          <i class="material-icons" :class="{'disabled': disabled}" @click="openWidget">&#xE878;</i>
+
+          <q-datetime
+            ref="widget"
+            v-model="widget"
+            :okLabel="okLabel"
+            :cancelLabel="cancelLabel"
+            :clearLabel="clearLabel"
+            v-bind="bind"></q-datetime>
+
+          <input ref="input" class="input full-width" autocomplete="off"
+                 v-mask="pattern"
+                 v-model="model" v-bind="{id, name, placeholder, maxlength, disabled}"
+                 @keypress="keypress" @keyup="keyup" @blur="blur" @focus="focus" @keydown.enter.stop.prevent="enter"
+                 @input="updateValue($event.target.value)"/>
+          <div class="input-bar"></div>
+
+        </template>
+
+        <template v-else>
+          <div class="row justify-center">
+            <q-inline-datetime
+              v-model="widget"
+              v-bind="bind">
+            </q-inline-datetime>
+          </div>
+        </template>
+
       </div>
 
       <div v-show="!editable" class="html" v-html="html"></div>
@@ -39,6 +59,12 @@
         type: String,
         default: () => 'date'
       },
+      min: {
+        type: String
+      },
+      max: {
+        type: String
+      },
       format24h: {
         type: Boolean,
         default: () => true
@@ -54,6 +80,10 @@
       clearLabel: {
         type: String,
         default: () => 'Limpar'
+      },
+      embed: {
+        type: Boolean,
+        default: false
       }
     },
     data: () => ({
@@ -62,12 +92,28 @@
       programmatically: false,
       pattern: '##/##/####',
       model: '',
+      format: 'YYYY-MM-DD',
       monthNames: '', // View.get('locales.date.month')
       dayNames: '' // View.get('locales.date.days.week')
     }),
     computed: {
       html () {
         return this.model
+      },
+      bind () {
+        const {type, monthNames, dayNames, format24h} = this
+
+        let min, max
+
+        min = this.min ? moment(this.min).format() : ''
+        max = this.max ? max = moment(this.max).format() : ''
+
+        if (this.widget) {
+          min = min ? this.widget.replace(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g, this.min) : ''
+          max = max ? this.widget.replace(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g, this.max) : ''
+        }
+
+        return {min, max, type, monthNames, dayNames, format24h}
       }
     },
     methods: {
