@@ -41,13 +41,13 @@
       model: undefined
     }),
     computed: {
-      bind () {
+      bind() {
         return {
           min: this.min,
           max: this.max
         }
       },
-      html () {
+      html() {
         return this.model
       }
     },
@@ -55,7 +55,7 @@
       /**
        * @param {Number} value
        */
-      applyValue (value) {
+      applyValue(value) {
         if (!this.updated) {
           this.model = value
         }
@@ -63,9 +63,24 @@
       },
       /**
        */
-      updateValue () {
+      updateValue() {
         this.updated = true
         if (!this.disabled) {
+          let value = this.model
+          if (this.min === 0 || this.min) {
+            value = value < this.min ? this.min : value
+          }
+
+          if (this.max === 0 || this.max) {
+            value = value > this.max ? this.max : value
+          }
+
+          if (this.model !== value) {
+            this.updated = false
+          }
+
+          this.model = value
+
           this.$emit('input', this.model)
         }
       },
@@ -73,7 +88,7 @@
        * @param {Number} value
        * @param {Number} step
        */
-      add (value, step) {
+      add(value, step) {
         this.applyValue(Number(value || 0) + step)
         this.updateValue()
       },
@@ -81,20 +96,20 @@
        * @param {Number} value
        * @param {Number} step
        */
-      remove (value, step) {
+      remove(value, step) {
         this.applyValue(Number(value || 0) - step)
         this.updateValue()
       }
     },
     watch: {
-      value (value) {
+      value(value) {
         this.applyValue(value)
       },
-      mask () {
+      mask() {
         this.applyValue(this.value)
       }
     },
-    mounted () {
+    mounted() {
       this.applyValue(this.value)
     }
   }
