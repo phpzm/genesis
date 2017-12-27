@@ -15,7 +15,9 @@
         </template>
 
         <template v-else>
-          <q-inline-datetime v-model="widget" type="time" v-bind="bind"/>
+          <div class="row justify-center">
+            <q-inline-datetime v-model="widget" type="time" v-bind="bind"/>
+          </div>
         </template>
 
       </div>
